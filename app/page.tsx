@@ -18,6 +18,8 @@ const advantages = [
   { title: 'Career-Focused Approach', text: 'Learn with a clear direction for your next professional step.', detail: 'Connect your learning with the aviation, hospitality and hospital administration roles that interest you.', image: '/academy-learning.webp', imageAlt: 'Students preparing together for their careers' },
 ];
 
+const advantageIcons = [BookOpen, Users, BriefcaseBusiness, CircleCheck];
+
 const programs = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/nxt-classroom-hero.webp' },
   { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/academy-learning.webp' },
@@ -90,12 +92,16 @@ export default function Home() {
 
       <section id="why-nxt" className="section why-redesign">
         <div className="why-heading"><span className="eyebrow">THE NXT ADVANTAGE</span><h2>Why Choose NXT Academy</h2><p>A learning experience built around the skills you need and the person you’re becoming.</p></div>
-        <div className="advantage-redesign-grid">{advantages.map(({ title, text, detail, image, imageAlt }, index) => <button type="button" className={openAdvantage === index ? 'is-open' : ''} key={title} onClick={() => setOpenAdvantage(openAdvantage === index ? null : index)} aria-expanded={openAdvantage === index}>
-          <span className="advantage-photo"><Image src={image} fill unoptimized sizes="(max-width:760px) 100vw, 25vw" alt={imageAlt} /></span>
-          <span className="advantage-content"><span className="advantage-index">0{index + 1}</span><h3>{title}</h3><p>{text}</p>
-          <span className="advantage-more">{openAdvantage === index ? 'Show less' : 'Click to know more'}{openAdvantage === index ? <Minus size={19} /> : <Plus size={19} />}</span>
-          {openAdvantage === index && <span className="advantage-detail">{detail}</span>}</span>
-        </button>)}</div>
+        <div className="why-graphic-list">{advantages.map(({ title, text, detail }, index) => {
+          const AdvantageIcon = advantageIcons[index];
+          const isOpen = openAdvantage === index;
+          return <button type="button" className={`why-graphic-item${isOpen ? ' is-open' : ''}`} key={title} onClick={() => setOpenAdvantage(isOpen ? null : index)} aria-expanded={isOpen}>
+            <span className="why-graphic-icon" aria-hidden="true"><AdvantageIcon size={31} strokeWidth={1.7} /></span>
+            <span className="why-graphic-copy"><span className="advantage-index">0{index + 1}</span><h3>{title}</h3><p>{text}</p>
+            {isOpen && <span className="advantage-detail">{detail}</span>}</span>
+            <span className="why-graphic-toggle" aria-hidden="true">{isOpen ? <Minus size={20} /> : <Plus size={20} />}</span>
+          </button>;
+        })}</div>
       </section>
 
       <section className="section experience-redesign">
