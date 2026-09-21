@@ -165,7 +165,8 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 }
 
 /* Match the campus sign and preserve the full building in the hero. */
-.brand-name{font-family:"Arial Black","Segoe UI",Arial,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:-.75px}
+@font-face{font-family:"NXT Sign";src:url("/fonts/montserrat-black.ttf") format("truetype");font-style:normal;font-weight:900;font-display:swap}
+.brand-name{font-family:"NXT Sign",Montserrat,"Arial Black",Arial,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:-.8px}
 .campus-hero{height:clamp(700px,62vw,1190px);min-height:700px;max-height:none}
 .campus-hero-image{object-position:center center}
 
