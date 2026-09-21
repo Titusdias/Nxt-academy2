@@ -49,7 +49,7 @@ export function AcademyHeader() {
 
 export default function ReferenceHero() {
   return <section id="home" className="campus-hero">
-    <Image className="campus-hero-image" src="/academy-campus.jpeg" fill unoptimized preload sizes="100vw" alt="NXT Academy of Creative Studies campus in Mangaluru" />
+    <Image className="campus-hero-image" src="/academy-campus-hero-new.jpeg" fill unoptimized preload sizes="100vw" alt="NXT Academy of Creative Studies campus in Mangaluru" />
     <div className="campus-hero-shade" />
     <div className="hero-program-intro">
       <span>PROGRAMS AT NXT</span>
