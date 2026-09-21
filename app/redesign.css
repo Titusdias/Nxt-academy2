@@ -165,8 +165,7 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 }
 
 /* Match the campus sign and preserve the full building in the hero. */
-@font-face{font-family:"NXT Sign";src:url("/fonts/montserrat-black.ttf") format("truetype");font-style:normal;font-weight:900;font-display:swap}
-.brand-name{font-family:"NXT Sign",Montserrat,"Arial Black",Arial,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:-.8px}
+.brand-name{font-family:"Arial Black",Arial,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:-.8px}
 .campus-hero{height:clamp(700px,62vw,1190px);min-height:700px;max-height:none}
 .campus-hero-image{object-position:center center}
 
@@ -179,4 +178,20 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 
 @media(max-width:370px){
   .brand-name{font-size:11px;letter-spacing:-.5px}
+}
+
+/* Exact wordmark cropped from the supplied campus sign. */
+.site-header .brand-name{position:relative;display:block;width:clamp(235px,22vw,330px);height:auto;aspect-ratio:990/75;flex:none;overflow:hidden}
+.site-header .brand-name img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important}
+
+@media(max-width:1180px){
+  .site-header .brand-name{width:220px}
+}
+
+@media(max-width:700px){
+  .site-header .brand-name{width:min(51vw,200px)}
+}
+
+@media(max-width:370px){
+  .site-header .brand-name{width:172px}
 }
