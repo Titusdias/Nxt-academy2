@@ -188,3 +188,22 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .site-header nav{gap:12px;font-size:12px}
   .header-enquire{padding-inline:17px;white-space:nowrap}
 }
+
+/* Centered stacked mobile brand, matching the supplied reference. */
+@media(max-width:700px){
+  html{scroll-padding-top:126px}
+  .site-header{height:126px;padding:6px 52px 9px;justify-content:center}
+  .site-header .brand{height:111px!important;flex-direction:column;justify-content:center;gap:4px}
+  .brand-mark{width:82px;height:82px}
+  .brand-name{font-size:18px;line-height:1;text-align:center;letter-spacing:-.65px}
+  .menu-toggle{position:absolute;right:16px;top:17px;margin:0;width:42px;height:42px}
+}
+
+@media(max-width:370px){
+  html{scroll-padding-top:116px}
+  .site-header{height:116px;padding-inline:46px}
+  .site-header .brand{height:103px!important}
+  .brand-mark{width:75px;height:75px}
+  .brand-name{font-size:15.5px}
+  .menu-toggle{right:12px;top:14px}
+}
