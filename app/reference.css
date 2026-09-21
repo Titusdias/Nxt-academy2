@@ -54,3 +54,132 @@ html{scroll-padding-top:24px}body{overflow-x:clip;color:#18232b}h2{letter-spacin
 @keyframes contactPulse{0%,100%{box-shadow:0 5px 20px #093c6230,0 0 0 0 #65b78055}55%{box-shadow:0 5px 20px #093c6230,0 0 0 11px #65b78000}}
 @media(max-width:700px){.hero-heading h1{width:100%}.typewriter-text{white-space:normal}.typing-cursor{width:2px;margin-left:4px}.circle-link{animation-duration:.55s}}
 @media(prefers-reduced-motion:reduce){.reference-hero,.hero-heading>p,.circle-link,.hero-welcome,.floating-contact{animation:none!important}.typewriter-text{position:static}.typewriter-reserve{display:none}.typing-cursor{display:none}}
+
+/* Campus photo hero */
+.campus-header{align-items:center;padding:22px clamp(28px,4vw,66px);color:#fff;background:linear-gradient(180deg,rgba(4,27,43,.58),transparent)}
+.campus-header .brand{width:205px;height:72px;flex:none;background:#fff}
+.campus-header nav{display:flex;align-items:center;gap:clamp(17px,2vw,31px);margin-left:auto;font-size:13px;text-align:left}
+.campus-header nav a{position:relative;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.campus-header nav a:after{content:'';display:block;position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:#62d794;transition:right .25s}
+.campus-header nav a:hover:after{right:0}
+.campus-header-enquire{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:12px;margin-left:8px;padding:0 21px;border-radius:8px;background:#19ad70;color:#fff;font-size:13px;font-weight:700;transition:transform .25s,background .25s}
+.campus-header-enquire:hover{background:#0d8d59;transform:translateY(-2px)}
+.photo-hero{position:relative;isolation:isolate;height:100svh;min-height:720px;max-height:900px;overflow:hidden;background:#062a40;color:#fff}
+.photo-hero-image{z-index:-3;object-fit:cover;object-position:center 48%}
+.photo-hero-overlay{position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,rgba(3,28,44,.94) 0%,rgba(3,28,44,.82) 32%,rgba(3,28,44,.36) 60%,rgba(3,28,44,.08) 82%),linear-gradient(0deg,rgba(3,28,44,.36),transparent 42%)}
+.photo-hero-content{position:absolute;left:clamp(38px,5vw,76px);top:52%;width:min(700px,55vw);transform:translateY(-44%)}
+.photo-hero-kicker{margin:0 0 21px;color:#fff;font-size:12px;font-weight:700;letter-spacing:2px}
+.photo-hero h1{margin:0;color:#fff;font-size:clamp(48px,4.55vw,70px);font-weight:780;line-height:1.02;letter-spacing:-2.6px}
+.photo-hero h1 span{color:#32c886}
+.photo-hero-description{max-width:560px;margin:24px 0 0;color:rgba(255,255,255,.91);font-size:17px;line-height:1.6}
+.photo-hero-actions{display:flex;gap:12px;margin-top:26px}
+.photo-primary-action,.photo-secondary-action{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:13px;padding:0 22px;border-radius:8px;font-size:14px;font-weight:700;transition:transform .25s,background .25s}
+.photo-primary-action{background:#19ad70;color:#fff}.photo-primary-action:hover{background:#0d8d59;transform:translateY(-2px)}
+.photo-secondary-action{border:1px solid rgba(255,255,255,.75);background:rgba(4,36,55,.22);color:#fff}.photo-secondary-action:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.photo-hero-proof{width:fit-content;min-height:40px;display:flex;align-items:center;gap:9px;margin-top:36px;padding:8px 15px;border:1px solid rgba(255,255,255,.52);border-radius:100px;background:rgba(3,30,47,.34);font-size:12px}
+.photo-hero-proof svg{color:#7be2ad}.photo-hero-proof i{width:5px;height:5px;border-radius:50%;background:#32c886}
+.photo-hero-tour{position:absolute;right:clamp(38px,5vw,76px);bottom:32px;display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.58);font-size:12px;font-weight:600}
+.photo-hero-tour svg{transition:transform .25s}.photo-hero-tour:hover svg{transform:translateX(4px)}
+
+@media(max-width:1050px){.campus-header .brand{width:180px;height:65px}.campus-header nav{gap:16px;font-size:12px}.campus-header-enquire{padding-inline:16px}.photo-hero-content{width:min(630px,62vw)}}
+@media(max-width:760px){
+ .campus-header{padding:10px 16px;background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(255,255,255,.87));color:#082e46}
+ .campus-header .brand{width:145px;height:52px;background:transparent}
+ .campus-header-enquire{display:none}
+ .campus-header .menu-toggle{display:grid;place-items:center;width:42px;height:42px;margin-left:auto;border:0;border-radius:50%;background:#fff;color:#082e46;box-shadow:0 3px 15px rgba(5,35,53,.13)}
+ .campus-header nav{display:none}
+ .campus-header nav.open{display:flex;position:absolute;inset:72px 14px auto;flex-direction:column;align-items:stretch;gap:0;padding:13px 20px;border-radius:12px;background:#fff;color:#082e46;box-shadow:0 16px 35px rgba(4,31,48,.2)}
+ .campus-header nav.open a{padding:11px 0;text-shadow:none}
+ .campus-header nav.open a:after{display:none}
+ .photo-hero{height:auto;min-height:0;max-height:none;padding-top:250px;background:#062a40}
+ .photo-hero-image{height:250px!important;bottom:auto!important;object-position:center top}
+ .photo-hero-overlay{height:250px;bottom:auto;background:linear-gradient(180deg,rgba(255,255,255,.04) 55%,rgba(6,42,64,.48))}
+ .photo-hero-content{position:relative;left:auto;top:auto;width:auto;transform:none;padding:24px 18px 25px}
+ .photo-hero-kicker{margin-bottom:10px;font-size:9px;letter-spacing:1.45px}
+ .photo-hero h1{font-size:clamp(31px,8.7vw,40px);line-height:1.04;letter-spacing:-1.4px}
+ .photo-hero-description{margin-top:15px;font-size:13px;line-height:1.5}
+ .photo-hero-actions{flex-direction:column;gap:8px;margin-top:19px}
+ .photo-primary-action,.photo-secondary-action{width:100%;min-height:44px;font-size:13px}
+ .photo-hero-proof{width:100%;justify-content:center;margin-top:15px;padding:8px 9px;font-size:10px;white-space:nowrap}
+ .photo-hero-tour{display:none}
+}
+@media(max-width:370px){.photo-hero{padding-top:225px}.photo-hero-image,.photo-hero-overlay{height:225px!important}.photo-hero-content{padding-inline:15px}.photo-hero-proof{font-size:9px;gap:6px}}
+
+/* Circular pathways directly below the campus hero */
+.campus-link-section{position:relative;padding:42px clamp(24px,5vw,78px) 112px;background:linear-gradient(110deg,#0d486e 0%,#116796 55%,#087db0 100%);color:#fff;overflow:hidden}
+.campus-link-section:after{content:'';position:absolute;z-index:0;left:0;right:0;bottom:0;height:100px;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+.campus-link-grid{position:relative;z-index:1;max-width:1700px;margin:0 auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(18px,2.2vw,42px);align-items:start}
+.campus-circle-link{min-width:0;display:flex;flex-direction:column;align-items:center;color:#fff;animation:campusCircleIn .65s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--circle-order) * 80ms)}
+.campus-circle-photo{position:relative;width:100%;max-width:310px;aspect-ratio:1;overflow:hidden;border:18px solid rgba(119,192,231,.27);border-radius:50%;background:#1d628b;transition:transform .35s,border-color .35s,box-shadow .35s}
+.campus-circle-photo img{object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .35s}
+.campus-circle-title{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:17px;font-size:16px;font-weight:600;line-height:1.2}
+.campus-circle-title svg{transition:transform .3s}
+.campus-circle-link:hover .campus-circle-photo,.campus-circle-link:focus-visible .campus-circle-photo{transform:translateY(-7px);border-color:rgba(137,218,255,.55);box-shadow:0 20px 38px rgba(2,31,49,.28)}
+.campus-circle-link:hover .campus-circle-photo img,.campus-circle-link:focus-visible .campus-circle-photo img{transform:scale(1.06);filter:saturate(1.08)}
+.campus-circle-link:hover .campus-circle-title svg,.campus-circle-link:focus-visible .campus-circle-title svg{transform:translate(3px,-3px)}
+.campus-link-section>h2{position:relative;z-index:1;margin:43px 0 0;text-align:center;color:#fff;font-size:clamp(25px,2.25vw,37px);font-weight:700;letter-spacing:-.8px}
+@keyframes campusCircleIn{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+
+@media(max-width:1000px){.campus-link-grid{gap:18px}.campus-circle-photo{border-width:12px}.campus-circle-title{font-size:14px}}
+@media(max-width:760px){
+ .campus-link-section{padding:38px 20px 112px}
+ .campus-link-grid{grid-template-columns:1fr;gap:35px}
+ .campus-circle-link{width:100%;max-width:360px;margin-inline:auto}
+ .campus-circle-photo{width:min(76vw,310px);border-width:14px}
+ .campus-circle-title{margin-top:13px;font-size:16px}
+ .campus-link-section>h2{margin-top:42px;font-size:28px;line-height:1.2}
+}
+@media(prefers-reduced-motion:reduce){.campus-circle-link{animation:none}.campus-circle-photo,.campus-circle-photo img,.campus-circle-title svg{transition:none}}
+
+/* Transparent brand mark and detailed program cards */
+.brand img{object-fit:contain!important;transform:none!important}
+.campus-header .brand{padding:6px 10px;border-radius:9px;background:rgba(255,255,255,.94)}
+.reference-footer .brand{padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.96)}
+.compact-course>span:last-child{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.compact-course strong{font-size:14px;line-height:1.35}
+.course-duration{display:inline-flex;margin:7px 0 3px;padding:4px 8px;border-radius:100px;background:#dfeff9;color:#0d67a3;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px}
+.placement-guarantee{display:inline-flex;align-items:center;gap:6px;margin-top:10px;color:#168e59;font-size:11px;font-weight:800}
+.placement-guarantee svg{flex:none}
+.dialog-program-meta{display:flex;align-items:center;gap:14px;margin:4px 0 20px;padding:13px 15px;border-radius:9px;background:#edf6fa;color:#355362;font-size:13px}
+.dialog-program-meta strong{flex:none;padding:5px 9px;border-radius:100px;background:#0d67a3;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+.dialog-placement{display:flex;align-items:center;gap:8px;margin:20px 0 8px!important;padding:13px 15px;border-radius:9px;background:#e5f7ed;color:#147e50!important;font-weight:800}
+@media(max-width:700px){.campus-header .brand{padding:3px 6px}.reference-footer .brand{height:68px}.compact-course{align-items:center}.compact-course strong{font-size:13px}.dialog-program-meta{align-items:flex-start;flex-direction:column;gap:8px}}
+
+/* Final brand and typography polish */
+.campus-header .brand,.reference-footer .brand{padding:0;border-radius:0;background:transparent;overflow:visible}
+.campus-header .brand img{filter:drop-shadow(0 2px 8px rgba(255,255,255,.72))}
+.reference-footer .brand img{filter:drop-shadow(0 2px 9px rgba(255,255,255,.45))}
+.photo-hero h1,.campus-link-section h2,.academy-intro h2,.compact-courses h2,.career-directions h2,.academy-sidebar h2,.reference-advantages h2,.learning-highlights h2,.reference-faq h2,.reference-gallery h2,.contact h2,.compact-course strong,.program-dialog h2{font-family:var(--font-display)}
+.photo-hero h1{font-weight:700;letter-spacing:-2px}
+.compact-course strong{letter-spacing:-.15px}
+.floating-contact{background:linear-gradient(145deg,#2bd477,#128c50);box-shadow:0 8px 25px rgba(4,49,31,.3)}
+@media(max-width:700px){.campus-header .brand{padding:0}.photo-hero h1{letter-spacing:-1.15px}}
+
+/* Purposeful motion for the hero and page sections */
+.hero-type-row{position:relative;display:block;width:100%}
+.hero-type-reserve{display:block;visibility:hidden}
+.hero-type-text{position:absolute;inset:0 auto auto 0;display:block;width:100%}
+.hero-type-first,.hero-type-first span{color:#fff!important}
+.hero-type-second,.hero-type-second span{color:#32c886!important}
+.hero-typing-cursor{display:inline-block;width:3px;height:.8em;margin-left:5px;background:currentColor;vertical-align:-.02em;animation:heroCursorBlink .68s steps(1) infinite}
+.hero-typing-cursor.finished{animation-iteration-count:6}
+.photo-hero-image{animation:heroPhotoEntrance 1.4s cubic-bezier(.2,.75,.2,1) both}
+.photo-hero-kicker{animation:heroTextEntrance .65s .12s ease-out both}
+.photo-hero-description{animation:heroTextEntrance .7s 1.05s ease-out both}
+.photo-hero-actions{animation:heroTextEntrance .7s 1.2s ease-out both}
+.photo-hero-proof{animation:heroTextEntrance .7s 1.34s ease-out both}
+.photo-hero-tour{animation:heroTextEntrance .7s 1.48s ease-out both}
+.motion-ready .scroll-reveal{opacity:0;transform:translateY(28px);transition:opacity .72s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),transform .72s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms)}
+.motion-ready .scroll-reveal.is-visible{opacity:1;transform:none}
+@keyframes heroCursorBlink{0%,48%{opacity:1}49%,100%{opacity:0}}
+@keyframes heroPhotoEntrance{from{opacity:.72;transform:scale(1.055)}to{opacity:1;transform:scale(1)}}
+@keyframes heroTextEntrance{from{opacity:0;transform:translateY(17px)}to{opacity:1;transform:none}}
+@media(max-width:700px){.hero-typing-cursor{width:2px;margin-left:3px}.photo-hero-description{animation-delay:.95s}.photo-hero-actions{animation-delay:1.08s}.photo-hero-proof{animation-delay:1.2s}}
+@media(prefers-reduced-motion:reduce){.photo-hero-image,.photo-hero-kicker,.photo-hero-description,.photo-hero-actions,.photo-hero-proof,.photo-hero-tour,.hero-typing-cursor{animation:none!important}.motion-ready .scroll-reveal{opacity:1;transform:none;transition:none}}
+
+/* Keep the transparent logo legible over photography */
+.campus-header .brand{width:225px;height:74px;padding:7px 11px;border:1px solid rgba(255,255,255,.3);border-radius:12px;background:rgba(255,255,255,.22);backdrop-filter:blur(10px);box-shadow:0 8px 24px rgba(2,25,40,.16);overflow:hidden}
+.campus-header .brand img{opacity:1!important;object-fit:contain!important;filter:drop-shadow(0 1px 3px rgba(255,255,255,.9))}
+.reference-footer .brand{padding:7px 11px;border:1px solid rgba(255,255,255,.22);border-radius:10px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px)}
+@media(max-width:1050px){.campus-header .brand{width:190px;height:64px}}
+@media(max-width:760px){.campus-header .brand{width:150px;height:52px;padding:2px 4px;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none}.campus-header .brand img{filter:none}}
