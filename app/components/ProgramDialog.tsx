@@ -1,4 +1,29 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
-export default function ProgramDialog({program,onClose}:{program:string|null;onClose:()=>void}){const ref=useRef<HTMLDialogElement>(null);useEffect(()=>{if(program){ref.current?.showModal();document.body.style.overflow='hidden'}else{ref.current?.close();document.body.style.overflow=''}return()=>{document.body.style.overflow=''}},[program]);return <dialog ref={ref} className="program-dialog" aria-labelledby="program-title" onCancel={onClose} onClick={e=>{if(e.target===ref.current)onClose()}}><div><button className="dialog-close" onClick={onClose} aria-label="Close program details"><X/></button><div className="section-label">FIND YOUR DIRECTION / NXT ACADEMY</div><h2 id="program-title">{program}</h2><p>{program==='HOSPITALITY'?'Build the skills that turn service into an experience. Develop communication, guest relations and professional hospitality skills.':'Prepare for a world in motion. Develop confidence, communication and career-ready skills for opportunities across aviation.'}</p><h3>YOUR LEARNING FOCUS</h3><ul>{(program==='HOSPITALITY'?['Service excellence & guest relations','Communication & professional presentation','Hospitality skills & practical learning']:['Communication & passenger service skills','Confidence & professional presentation','Aviation-focused practical learning']).map(s=><li key={s}>{s}</li>)}</ul><p className="fineprint">For SSLC and PUC students. Confirm eligibility, curriculum, duration, fees and the next intake directly with admissions. No placement guarantee is made.</p><a href="#contact" className="button button-light" onClick={onClose}>ENQUIRE ABOUT THIS PROGRAM<ArrowUpRight size={18}/></a></div></dialog>}
+
+const programDetails: Record<string, { duration: string; description: string; focus: string[] }> = {
+  'BBA in Aviation and Hospitality Management': {
+    duration: '3 years',
+    description: 'Build a broad foundation in aviation, hospitality, management, communication and professional service.',
+    focus: ['Aviation and hospitality operations', 'Management and professional communication', 'Guest and passenger service skills'],
+  },
+  'Diploma in Aviation and Hospitality Management': {
+    duration: '1 year',
+    description: 'Develop practical aviation and hospitality skills for guest, passenger and service-focused roles.',
+    focus: ['Guest and passenger relations', 'Professional presentation and communication', 'Practical aviation and hospitality learning'],
+  },
+  'Diploma in Hospital Administration': {
+    duration: '1 year',
+    description: 'Learn the foundations of hospital administration, patient service and healthcare office coordination.',
+    focus: ['Hospital front-office administration', 'Patient service and communication', 'Healthcare records and coordination'],
+  },
+};
+
+export default function ProgramDialog({program,onClose}:{program:string|null;onClose:()=>void}){
+  const ref=useRef<HTMLDialogElement>(null);
+  const details=program ? programDetails[program] : null;
+  const whatsappHref=`https://wa.me/918217337597?text=${encodeURIComponent(`Hello NXT Academy, I would like to enquire about ${program ?? 'your courses'}.`)}`;
+  useEffect(()=>{if(program){ref.current?.showModal();document.body.style.overflow='hidden'}else{ref.current?.close();document.body.style.overflow=''}return()=>{document.body.style.overflow=''}},[program]);
+  return <dialog ref={ref} className="program-dialog" aria-labelledby="program-title" onCancel={onClose} onClick={e=>{if(e.target===ref.current)onClose()}}><div><button className="dialog-close" onClick={onClose} aria-label="Close program details"><X/></button><div className="section-label">FIND YOUR DIRECTION / NXT ACADEMY</div><h2 id="program-title">{program}</h2>{details&&<><p><strong>{details.duration}</strong> · {details.description}</p><h3>YOUR LEARNING FOCUS</h3><ul>{details.focus.map(s=><li key={s}>{s}</li>)}</ul></>}<p className="fineprint">Confirm eligibility, curriculum, fees and the next intake directly with admissions.</p><a href={whatsappHref} className="button button-light" target="_blank" rel="noopener noreferrer" onClick={onClose}>ENQUIRE ABOUT THIS PROGRAM<ArrowUpRight size={18}/></a></div></dialog>;
+}

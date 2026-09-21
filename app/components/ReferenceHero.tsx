@@ -1,19 +1,66 @@
 'use client';
+
 import Image from 'next/image';
-import { ArrowRight, BookOpen, GraduationCap, Users, BriefcaseBusiness, Mouse, Menu, X } from 'lucide-react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Brand } from './AcademyUI';
 
-const links = [['Home','home'],['About','about'],['Courses','courses'],['Why NXT','why-nxt'],['Student Life','student-life'],['Admissions','admissions'],['Contact','contact']];
+const links = [
+  ['About NXT', 'about'],
+  ['Courses', 'courses'],
+  ['Why NXT', 'why-nxt'],
+  ['Student Life', 'student-life'],
+  ['Admissions', 'admissions'],
+  ['Contact', 'contact'],
+];
 
-export function AcademyHeader(){
- const [open,setOpen]=useState(false);
- useEffect(()=>{const close=(event:KeyboardEvent)=>{if(event.key==='Escape')setOpen(false)};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close)},[]);
- return <header className="reference-header"><Brand/><nav id="academy-navigation" aria-label="Main navigation" className={open?'open':''}>{links.map(([label,id])=><a href={`#${id}`} key={id} onClick={()=>setOpen(false)}>{label}</a>)}</nav><a className="nav-button" href="#contact">Enquire now<ArrowRight size={19}/></a><button className="menu-toggle" aria-controls="academy-navigation" aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} onClick={()=>setOpen(!open)}>{open?<X/>:<Menu/>}</button></header>
+const heroCourses = [
+  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/nxt-classroom-hero.webp' },
+  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/academy-learning.webp' },
+  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/academy-campus.jpeg' },
+];
+
+const admissionsWhatsApp = 'https://wa.me/918217337597?text=Hello%20NXT%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20admissions.';
+
+export function AcademyHeader() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false);
+    const shadow = () => document.querySelector('.site-header')?.classList.toggle('is-scrolled', window.scrollY > 12);
+    window.addEventListener('keydown', close);
+    window.addEventListener('scroll', shadow, { passive: true });
+    shadow();
+    return () => {
+      window.removeEventListener('keydown', close);
+      window.removeEventListener('scroll', shadow);
+    };
+  }, []);
+
+  return <header className="site-header">
+    <Brand />
+    <nav id="site-navigation" aria-label="Main navigation" className={open ? 'is-open' : ''}>
+      {links.map(([label, id]) => <a href={`#${id}`} key={id} onClick={() => setOpen(false)}>{label}</a>)}
+    </nav>
+    <a className="header-enquire" href={admissionsWhatsApp} target="_blank" rel="noopener noreferrer">Enquire now <ArrowRight size={18} /></a>
+    <button className="menu-toggle" aria-controls="site-navigation" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+  </header>;
 }
 
-export default function ReferenceHero(){
- const reduce=useReducedMotion();
- return <><section id="home" className="academy-hero reference-hero"><div className="reference-backdrop"><Image src="/nxt-classroom-hero.webp" alt="Illustrative scene of students learning in a professional classroom" fill unoptimized priority sizes="100vw" className="hero-photo"/></div><motion.div className="hero-copy" initial={reduce?false:{opacity:0,y:24}} animate={{opacity:1,y:0}} transition={{duration:.8,ease:[.22,1,.36,1]}}><p className="hero-eyebrow">NXT ACADEMY OF CREATIVE STUDIES</p><h1>Skills for today.<br/>Careers for <span className="headline-accent">tomorrow.</span></h1><p className="hero-description">Career-focused training in Hospitality & Aviation<br className="desktop-break"/> for SSLC and PUC students.</p><div className="hero-actions"><a className="button" href="#courses">Explore courses<ArrowRight size={21}/></a><a className="button secondary" href="#student-life">Life at NXT<BookOpen size={19}/></a></div><p className="hero-signature">Learn. Practice. Grow.</p></motion.div><aside className="hero-aside"><p>MORE<br/>THAN AN<br/>ACADEMY</p><span className="aside-rule"/><a href="#student-life"><span className="student-life-icon"><GraduationCap size={24}/></span><span>Student life<br/>at NXT <ArrowRight size={16}/></span></a></aside><span className="hero-photo-credit">Illustrative learning imagery</span></section><section className="learning-strip reference-benefits" aria-label="Our learning approach">{[{icon:GraduationCap,title:'Practical learning',text:'Build skills through hands-on training.'},{icon:Users,title:'Professional development',text:'Grow your confidence and communication.'},{icon:BriefcaseBusiness,title:'Career-focused',text:'Training designed for your next step.'}].map(({icon:Icon,title,text})=><div key={title}><span className="benefit-icon"><Icon size={25} strokeWidth={1.8}/></span><span><strong>{title}</strong><small>{text}</small></span></div>)}<a href="#about" className="scroll-cue"><Mouse size={23}/><span>Scroll to explore</span></a></section></>
+export default function ReferenceHero() {
+  return <section id="home" className="campus-hero">
+    <Image className="campus-hero-image" src="/academy-campus.jpeg" fill unoptimized preload sizes="100vw" alt="NXT Academy of Creative Studies campus in Mangaluru" />
+    <div className="campus-hero-shade" />
+    <div className="hero-program-intro">
+      <span>PROGRAMS AT NXT</span>
+      <strong>Choose the path that fits your future</strong>
+      <ChevronDown size={20} aria-hidden="true" />
+    </div>
+    <div className="hero-course-circles" aria-label="Programs at NXT Academy">{heroCourses.map(course => <a href="#courses" key={course.title}>
+      <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 28vw, 18vw" alt="" /></span>
+      <strong>{course.title}</strong>
+      <small>{course.duration}</small>
+    </a>)}</div>
+    <a className="campus-tour-link" href="#student-life">Take a look inside NXT <ArrowRight size={17} /></a>
+  </section>;
 }

@@ -3,3 +3,6 @@ node_modules/
 out/
 .sites-runtime/
 *.tsbuildinfo
+*.zip
+NXTacademy-source/
+NXTacademy-updated-source/
