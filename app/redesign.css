@@ -136,3 +136,37 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .compact-course-card{height:112px;grid-template-columns:30% 1fr 34px;gap:10px;padding:5px 10px 5px 5px;border-radius:13px}
   .compact-course-copy strong{font-size:15px;line-height:1.25}
 }
+
+/* New circular brand and academy name in the white navigation bar. */
+.site-header .brand{width:auto!important;height:62px!important;display:flex!important;align-items:center;gap:12px;overflow:visible!important}
+.brand-mark{position:relative;display:block;width:62px;height:62px;flex:none;overflow:hidden;border-radius:50%;background:#fff}
+.site-header .brand-mark img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important}
+.brand-name{display:flex;align-items:baseline;gap:7px;color:#078d34;white-space:nowrap;line-height:1}
+.brand-name strong{font-size:clamp(18px,1.6vw,26px);font-weight:900;letter-spacing:-.6px}
+.brand-name small{font-size:clamp(9px,.72vw,12px);font-weight:800;letter-spacing:1px}
+.site-footer .brand{width:78px;height:78px;overflow:visible;background:transparent}
+.site-footer .brand-mark{width:78px;height:78px}
+.site-footer .brand-mark img{object-fit:contain!important;transform:none!important}
+.site-footer .brand-name{display:none}
+
+@media(max-width:1180px){
+  .site-header .brand{gap:8px}
+  .brand-mark{width:54px;height:54px}
+  .brand-name{display:block;line-height:1.05}
+  .brand-name strong,.brand-name small{display:block}
+  .brand-name strong{font-size:17px}
+  .brand-name small{margin-top:4px;font-size:8px;letter-spacing:1.2px}
+}
+
+@media(max-width:700px){
+  .site-header .brand{height:54px!important;gap:7px}
+  .brand-mark{width:54px;height:54px}
+  .brand-name strong{font-size:15px}
+  .brand-name small{font-size:7px;letter-spacing:1px}
+}
+
+@media(max-width:370px){
+  .brand-mark{width:48px;height:48px}
+  .brand-name strong{font-size:13px}
+  .brand-name small{font-size:6.5px}
+}
