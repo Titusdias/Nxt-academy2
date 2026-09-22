@@ -40,7 +40,7 @@ const programDetails: Record<string, ProgramDetails> = {
     description: 'A one-year diploma introducing the day-to-day foundations of hospital administration. Students learn about patient coordination, front-office practices, healthcare records and professional communication in a service-focused environment.',
     fees: [{ label: 'Program fee', value: '₹80,000' }],
     focus: ['Hospital front-office administration', 'Patient service and coordination', 'Healthcare records and office practices', 'Professional communication'],
-    image: '/course-diploma-hospitality.png',
+    image: '/course-hospital-admin.png',
   },
 };
 

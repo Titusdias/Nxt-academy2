@@ -16,7 +16,7 @@ const links = [
 const heroCourses = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/course-bba-aviation.png' },
   { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-hospitality.png' },
-  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-diploma-hospitality.png' },
+  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-admin.png' },
 ];
 
 const admissionsWhatsApp = 'https://wa.me/918217337597?text=Hello%20NXT%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20admissions.';
