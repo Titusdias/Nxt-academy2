@@ -9,7 +9,6 @@ const links = [
   ['Courses', 'courses'],
   ['Why NXT', 'why-nxt'],
   ['Student Life', 'student-life'],
-  ['Admissions', 'admissions'],
   ['Contact', 'contact'],
 ];
 

@@ -26,8 +26,6 @@ const programs = [
   { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
 ];
 
-const admissionsWhatsApp = 'https://wa.me/918217337597?text=Hello%20NXT%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20admissions.';
-
 const steps = [
   ['01', 'Discover', 'Understand your interests and direction.'],
   ['02', 'Learn', 'Build a strong foundation of skills.'],
@@ -103,9 +101,19 @@ export default function Home() {
         <div className="experience-copy"><span className="eyebrow">THE LEARNING EXPERIENCE</span><h2>Less watching.<br /><em>More doing.</em></h2><p>Practical activities make it easier to understand, remember and confidently use what you learn.</p><div className="activity-list">{['Presentation practice', 'Communication sessions', 'Role play & group activities', 'Professional grooming', 'Practical demonstrations', 'Career guidance'].map(item => <span key={item}><CircleCheck size={18} />{item}</span>)}</div></div>
       </section>
 
-      <section className="section journey-redesign">
-        <div><span className="eyebrow">YOUR PROGRESS</span><h2>From student to<br /><em>career-ready.</em></h2></div>
-        <div className="journey-steps">{steps.map(([number, title, text]) => <article key={title}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
+      <section id="journey" className="section journey-roadmap">
+        <div className="roadmap-heading"><span className="eyebrow">YOUR PROGRESS</span><h2>From student to <em>career-ready.</em></h2></div>
+        <div className="roadmap-stage">
+          <svg className="roadmap-road" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+            <path className="roadmap-shadow" d="M65 500 C180 570 330 525 300 405 C270 290 430 250 520 340 C610 430 760 350 720 240 C680 130 830 80 950 115" />
+            <path className="roadmap-surface" d="M65 500 C180 570 330 525 300 405 C270 290 430 250 520 340 C610 430 760 350 720 240 C680 130 830 80 950 115" />
+            <path className="roadmap-centre" d="M65 500 C180 570 330 525 300 405 C270 290 430 250 520 340 C610 430 760 350 720 240 C680 130 830 80 950 115" />
+          </svg>
+          {steps.map(([number, title, text], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}`} key={title}>
+            <span className="roadmap-pin"><b>{number}</b></span>
+            <div className="roadmap-copy"><h3>{title}</h3><p>{text}</p></div>
+          </article>)}
+        </div>
       </section>
 
       <section id="student-life" className="section life-redesign">
@@ -115,16 +123,6 @@ export default function Home() {
           <figure><Image src="/nxt-classroom-hero.webp" fill unoptimized sizes="(max-width:760px) 100vw, 35vw" alt="A student building confidence in class" /><figcaption><span>02 · PROFESSIONAL GROWTH</span><h3>Find your voice</h3></figcaption></figure>
           <figure><Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 100vw, 35vw" alt="NXT Academy campus in Mangaluru" /><figcaption><span>03 · YOUR CAMPUS</span><h3>A place to begin</h3></figcaption></figure>
         </div>
-      </section>
-
-      <section id="admissions" className="section admissions-redesign">
-        <div><span className="eyebrow">WHO CAN APPLY?</span><h2>Finished SSLC or PUC?<br /><em>Your next chapter is here.</em></h2><p>Explore practical, career-focused training in aviation, hospitality and hospital administration. Our admissions team can help you understand each program and its requirements.</p><a className="primary-action" href={admissionsWhatsApp} target="_blank" rel="noopener noreferrer">Talk to admissions <ArrowRight size={18} /></a></div>
-        <div className="admissions-card"><span>YOUR STARTING POINT</span><strong>SSLC <em>&amp;</em> PUC</strong><p>Your interests. Your skills.<br />A direction that’s yours.</p><small>Program-specific eligibility is confirmed by admissions.</small></div>
-      </section>
-
-      <section className="section parent-redesign">
-        <div><span className="eyebrow">FOR PARENTS &amp; GUARDIANS</span><h2>A clearer next step<br /><em>for their future.</em></h2><p>Choosing a course after school is an important family decision. Get a clear understanding of the training, activities and expectations before enrolment.</p><a href={admissionsWhatsApp} target="_blank" rel="noopener noreferrer" className="inline-link">Speak with admissions <ArrowRight size={18} /></a></div>
-        <div className="parent-points"><article><BookOpen /><div><h3>Learning with structure</h3><p>Understand the program, learning activities and expectations.</p></div></article><article><BriefcaseBusiness /><div><h3>Skills with practical value</h3><p>Training focused on communication, service and professional readiness.</p></div></article><article><Users /><div><h3>Confidence through participation</h3><p>A supportive environment for communication, presentation and growth.</p></div></article></div>
       </section>
 
       <section id="faq" className="section faq-redesign">
@@ -138,7 +136,7 @@ export default function Home() {
       </section>
     </main>
 
-    <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student life</a></div><div><h3>Your next step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#admissions">Admissions</a><a href="#faq">FAQs</a></div><div><h3>Contact</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
+    <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student life</a></div><div><h3>Your next step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#contact">Enquire</a><a href="#faq">FAQs</a></div><div><h3>Contact</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
     <a className="floating-whatsapp" href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={23} /></a>
     <ProgramDialog program={program} onClose={() => setProgram(null)} />
   </>;
