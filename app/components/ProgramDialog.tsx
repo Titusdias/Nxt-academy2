@@ -1,29 +1,96 @@
 'use client';
-import { useEffect, useRef } from 'react';
-import { ArrowUpRight, X } from 'lucide-react';
 
-const programDetails: Record<string, { duration: string; description: string; focus: string[] }> = {
+import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import { ArrowUpRight, BookOpen, Clock3, IndianRupee, X } from 'lucide-react';
+
+type ProgramDetails = {
+  duration: string;
+  totalFee: string;
+  description: string;
+  fees: { label: string; value: string }[];
+  focus: string[];
+  image: string;
+};
+
+const programDetails: Record<string, ProgramDetails> = {
   'BBA in Aviation and Hospitality Management': {
     duration: '3 years',
-    description: 'Build a broad foundation in aviation, hospitality, management, communication and professional service.',
-    focus: ['Aviation and hospitality operations', 'Management and professional communication', 'Guest and passenger service skills'],
+    totalFee: '₹3,30,000',
+    description: 'A three-year program combining business management with aviation and hospitality operations. Students build an understanding of customer service, airport and hotel workflows, communication and workplace professionalism.',
+    fees: [
+      { label: '1st year', value: '₹1,30,000' },
+      { label: '2nd year', value: '₹1,00,000' },
+      { label: '3rd year', value: '₹1,00,000' },
+    ],
+    focus: ['Aviation and hospitality operations', 'Business management fundamentals', 'Guest and passenger service', 'Professional communication and presentation'],
+    image: '/course-bba-aviation.png',
   },
   'Diploma in Aviation and Hospitality Management': {
     duration: '1 year',
-    description: 'Develop practical aviation and hospitality skills for guest, passenger and service-focused roles.',
-    focus: ['Guest and passenger relations', 'Professional presentation and communication', 'Practical aviation and hospitality learning'],
+    totalFee: '₹1,30,000',
+    description: 'A focused one-year diploma that introduces practical service skills for aviation and hospitality environments. The program supports students in developing passenger service, guest relations, communication and professional presentation skills.',
+    fees: [{ label: 'Program fee', value: '₹1,30,000' }],
+    focus: ['Guest and passenger relations', 'Airport and hospitality service basics', 'Professional presentation and communication', 'Practical industry-focused learning'],
+    image: '/course-diploma-hospitality.png',
   },
   'Diploma in Hospital Administration': {
     duration: '1 year',
-    description: 'Learn the foundations of hospital administration, patient service and healthcare office coordination.',
-    focus: ['Hospital front-office administration', 'Patient service and communication', 'Healthcare records and coordination'],
+    totalFee: '₹80,000',
+    description: 'A one-year diploma introducing the day-to-day foundations of hospital administration. Students learn about patient coordination, front-office practices, healthcare records and professional communication in a service-focused environment.',
+    fees: [{ label: 'Program fee', value: '₹80,000' }],
+    focus: ['Hospital front-office administration', 'Patient service and coordination', 'Healthcare records and office practices', 'Professional communication'],
+    image: '/course-diploma-hospitality.png',
   },
 };
 
-export default function ProgramDialog({program,onClose}:{program:string|null;onClose:()=>void}){
-  const ref=useRef<HTMLDialogElement>(null);
-  const details=program ? programDetails[program] : null;
-  const whatsappHref=`https://wa.me/918217337597?text=${encodeURIComponent(`Hello NXT Academy, I would like to enquire about ${program ?? 'your courses'}.`)}`;
-  useEffect(()=>{if(program){ref.current?.showModal();document.body.style.overflow='hidden'}else{ref.current?.close();document.body.style.overflow=''}return()=>{document.body.style.overflow=''}},[program]);
-  return <dialog ref={ref} className="program-dialog" aria-labelledby="program-title" onCancel={onClose} onClick={e=>{if(e.target===ref.current)onClose()}}><div><button className="dialog-close" onClick={onClose} aria-label="Close program details"><X/></button><div className="section-label">FIND YOUR DIRECTION / NXT ACADEMY</div><h2 id="program-title">{program}</h2>{details&&<><p><strong>{details.duration}</strong> · {details.description}</p><h3>YOUR LEARNING FOCUS</h3><ul>{details.focus.map(s=><li key={s}>{s}</li>)}</ul></>}<p className="fineprint">Confirm eligibility, curriculum, fees and the next intake directly with admissions.</p><a href={whatsappHref} className="button button-light" target="_blank" rel="noopener noreferrer" onClick={onClose}>ENQUIRE ABOUT THIS PROGRAM<ArrowUpRight size={18}/></a></div></dialog>;
+export default function ProgramDialog({ program, onClose }: { program: string | null; onClose: () => void }) {
+  const ref = useRef<HTMLDialogElement>(null);
+  const details = program ? programDetails[program] : null;
+  const whatsappHref = `https://wa.me/918217337597?text=${encodeURIComponent(`Hello NXT Academy, I would like to enquire about ${program ?? 'your courses'}.`)}`;
+
+  useEffect(() => {
+    if (program) {
+      ref.current?.showModal();
+      ref.current?.scrollTo({ top: 0 });
+      document.body.style.overflow = 'hidden';
+    } else {
+      ref.current?.close();
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [program]);
+
+  return <dialog ref={ref} className="program-dialog" aria-labelledby="program-title" onCancel={onClose} onClick={event => { if (event.target === ref.current) onClose(); }}>
+    <div className="program-dialog-shell">
+      <button className="dialog-close" onClick={onClose} aria-label="Close program details"><X /></button>
+      {details && <>
+        <div className="program-dialog-image"><Image src={details.image} fill unoptimized sizes="(max-width:760px) 100vw, 760px" alt="" /></div>
+        <div className="program-dialog-content">
+          <div className="section-label">EXPLORE THE PROGRAM / NXT ACADEMY</div>
+          <h2 id="program-title">{program}</h2>
+          <p className="program-summary">{details.description}</p>
+
+          <div className="program-facts">
+            <div className="program-fact"><Clock3 size={22} /><span><small>Duration</small><strong>{details.duration}</strong></span></div>
+            <div className="program-fact"><IndianRupee size={22} /><span><small>Total program fee</small><strong>{details.totalFee}</strong></span></div>
+          </div>
+
+          <section className="program-detail-section">
+            <div className="program-section-heading"><span><IndianRupee size={18} /></span><div><small>YOUR INVESTMENT</small><h3>Fee structure</h3></div></div>
+            <div className="program-fee-list">{details.fees.map(fee => <div className="program-fee-row" key={fee.label}><span>{fee.label}</span><strong>{fee.value}</strong></div>)}</div>
+            <div className="program-fee-total"><span>Total program fee</span><strong>{details.totalFee}</strong></div>
+          </section>
+
+          <section className="program-detail-section">
+            <div className="program-section-heading"><span><BookOpen size={18} /></span><div><small>WHAT YOU WILL EXPLORE</small><h3>Learning focus</h3></div></div>
+            <ul className="program-focus-list">{details.focus.map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ul>
+          </section>
+
+          <p className="fineprint">Fees shown are based on the current information provided. Confirm eligibility, inclusions, payment schedule and the next intake directly with admissions.</p>
+          <a href={whatsappHref} className="program-enquire" target="_blank" rel="noopener noreferrer" onClick={onClose}>ENQUIRE ABOUT THIS PROGRAM <ArrowUpRight size={18} /></a>
+        </div>
+      </>}
+    </div>
+  </dialog>;
 }
