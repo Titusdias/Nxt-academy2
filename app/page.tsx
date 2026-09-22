@@ -85,11 +85,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="section about-redesign">
-        <div className="about-photo"><Image src="/academy-learning.webp" fill unoptimized sizes="(max-width:760px) 100vw, 45vw" alt="Young students learning together with a mentor" /><span>Illustrative learning imagery</span></div>
-        <div className="about-copy"><span className="eyebrow">WELCOME TO NXT</span><h2>More than a classroom.<br /><em>A place to grow.</em></h2><p>NXT Academy of Creative Studies helps students develop practical skills, professional confidence and a clear direction through Hospitality and Aviation training.</p><p>Here, learning means taking part, finding your voice and putting new skills into practice.</p><a href="#why-nxt" className="inline-link">Why students choose NXT <ArrowRight size={18} /></a></div>
-      </section>
-
       <section id="why-nxt" className="section why-redesign">
         <div className="why-heading"><span className="eyebrow">THE NXT ADVANTAGE</span><h2>Why Choose NXT Academy</h2><p>A learning experience built around the skills you need and the person you’re becoming.</p></div>
         <div className="why-graphic-list">{advantages.map(({ title, text, detail }, index) => {
@@ -143,7 +138,7 @@ export default function Home() {
       </section>
     </main>
 
-    <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#about">About NXT</a><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student life</a></div><div><h3>Your next step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#admissions">Admissions</a><a href="#faq">FAQs</a></div><div><h3>Contact</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
+    <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student life</a></div><div><h3>Your next step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#admissions">Admissions</a><a href="#faq">FAQs</a></div><div><h3>Contact</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
     <a className="floating-whatsapp" href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={23} /></a>
     <ProgramDialog program={program} onClose={() => setProgram(null)} />
   </>;

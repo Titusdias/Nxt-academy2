@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { Brand } from './AcademyUI';
 
 const links = [
-  ['About NXT', 'about'],
   ['Courses', 'courses'],
   ['Why NXT', 'why-nxt'],
   ['Student Life', 'student-life'],
