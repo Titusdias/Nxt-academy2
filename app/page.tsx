@@ -5,17 +5,17 @@ import { FormEvent, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
   ChevronDown, CircleCheck, Mail, MapPin,
-  MessageCircle, Minus, Phone, Plus, Users,
+  MessageCircle, Phone, Users,
 } from 'lucide-react';
 import ReferenceHero, { AcademyHeader } from './components/ReferenceHero';
 import ProgramDialog from './components/ProgramDialog';
 import { Brand } from './components/AcademyUI';
 
 const advantages = [
-  { title: 'Practical Learning', text: 'Learn through activity-based training and hands-on sessions.', detail: 'Presentations, role play, group activities and practical demonstrations help you put learning into action.', image: '/academy-learning.webp', imageAlt: 'Students taking part in a practical learning session' },
-  { title: 'Professional Development', text: 'Build communication, confidence and professional presentation.', detail: 'Practise communication, professional grooming and confident participation in a supportive environment.', image: '/nxt-classroom-hero.webp', imageAlt: 'Students developing professional skills in class' },
-  { title: 'Industry-Relevant Skills', text: 'Build a foundation in service and industry-focused skills.', detail: 'Develop guest relations, passenger service, administration and professional communication skills.', image: '/academy-campus.jpeg', imageAlt: 'NXT Academy campus for industry-focused learning' },
-  { title: 'Career-Focused Approach', text: 'Learn with a clear direction for your next professional step.', detail: 'Connect your learning with the aviation, hospitality and hospital administration roles that interest you.', image: '/academy-learning.webp', imageAlt: 'Students preparing together for their careers' },
+  { title: 'Practical Learning', text: 'Learn through activity-based training and hands-on sessions.' },
+  { title: 'Professional Development', text: 'Build communication, confidence and professional presentation.' },
+  { title: 'Industry-Relevant Skills', text: 'Build a foundation in service and industry-focused skills.' },
+  { title: 'Career-Focused Approach', text: 'Learn with a clear direction for your next professional step.' },
 ];
 
 const advantageIcons = [BookOpen, Users, BriefcaseBusiness, CircleCheck];
@@ -35,7 +35,7 @@ const steps = [
 ];
 
 const faqs = [
-  ['Who can apply to NXT Academy?', 'Students who have completed SSLC or PUC and are interested in aviation, hospitality or hospital administration can enquire. Admissions will confirm program-specific requirements.'],
+  ['Who can apply to NXT Academy?', 'Students who have completed 10th or 12th and are interested in aviation, hospitality or hospital administration can enquire. Admissions will confirm program-specific requirements.'],
   ['What courses are offered?', 'NXT Academy offers a 3-year BBA in Aviation and Hospitality Management, a 1-year Diploma in Aviation and Hospitality Management, and a 1-year Diploma in Hospital Administration.'],
   ['Does the training include practical sessions?', 'Yes. The learning experience includes presentations, communication practice, role play, group activities and practical demonstrations.'],
   ['How do I know which course suits me?', 'Speak with the admissions team about your interests, educational background and career direction. They can explain each program before you decide.'],
@@ -46,7 +46,6 @@ const faqs = [
 export default function Home() {
   const [program, setProgram] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState(0);
-  const [openAdvantage, setOpenAdvantage] = useState<number | null>(null);
   const [whatsappUrl, setWhatsappUrl] = useState('');
 
   function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
@@ -59,7 +58,6 @@ export default function Home() {
       `Email: ${data.get('email')}`,
       `Qualification: ${data.get('qualification')}`,
       `Interested course: ${data.get('course')}`,
-      data.get('message') ? `Question: ${data.get('message')}` : '',
     ].filter(Boolean).join('\n');
     setWhatsappUrl(`https://wa.me/918217337597?text=${encodeURIComponent(message)}`);
   }
@@ -85,15 +83,12 @@ export default function Home() {
 
       <section id="why-nxt" className="section why-redesign">
         <div className="why-heading"><span className="eyebrow">THE NXT ADVANTAGE</span><h2>Why Choose NXT Academy</h2><p>A learning experience built around the skills you need and the person you’re becoming.</p></div>
-        <div className="why-graphic-list">{advantages.map(({ title, text, detail }, index) => {
+        <div className="why-graphic-list">{advantages.map(({ title, text }, index) => {
           const AdvantageIcon = advantageIcons[index];
-          const isOpen = openAdvantage === index;
-          return <button type="button" className={`why-graphic-item${isOpen ? ' is-open' : ''}`} key={title} onClick={() => setOpenAdvantage(isOpen ? null : index)} aria-expanded={isOpen}>
+          return <article className="why-graphic-item" key={title}>
             <span className="why-graphic-icon" aria-hidden="true"><AdvantageIcon size={31} strokeWidth={1.7} /></span>
-            <span className="why-graphic-copy"><span className="advantage-index">0{index + 1}</span><h3>{title}</h3><p>{text}</p>
-            {isOpen && <span className="advantage-detail">{detail}</span>}</span>
-            <span className="why-graphic-toggle" aria-hidden="true">{isOpen ? <Minus size={20} /> : <Plus size={20} />}</span>
-          </button>;
+            <span className="why-graphic-copy"><span className="advantage-index">0{index + 1}</span><h3>{title}</h3><p>{text}</p></span>
+          </article>;
         })}</div>
       </section>
 
@@ -108,6 +103,11 @@ export default function Home() {
             <path className="roadmap-shadow" d="M65 500 C180 570 330 525 300 405 C270 290 430 250 520 340 C610 430 760 350 720 240 C680 130 830 80 950 115" />
             <path className="roadmap-surface" d="M65 500 C180 570 330 525 300 405 C270 290 430 250 520 340 C610 430 760 350 720 240 C680 130 830 80 950 115" />
             <path className="roadmap-centre" d="M65 500 C180 570 330 525 300 405 C270 290 430 250 520 340 C610 430 760 350 720 240 C680 130 830 80 950 115" />
+          </svg>
+          <svg className="roadmap-mobile-road" viewBox="0 0 100 640" preserveAspectRatio="none" aria-hidden="true">
+            <path className="roadmap-shadow" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
+            <path className="roadmap-surface" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
+            <path className="roadmap-centre" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
           </svg>
           {steps.map(([number, title, text], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}`} key={title}>
             <span className="roadmap-pin"><b>{number}</b></span>
@@ -132,7 +132,7 @@ export default function Home() {
 
       <section id="contact" className="section contact-redesign">
         <div className="contact-copy"><span className="eyebrow">START A CONVERSATION</span><h2>Let’s talk about<br /><em>your next step.</em></h2><p>Tell us what you’re interested in. Your enquiry will be prepared for WhatsApp so you can review it before sending.</p><div className="contact-links"><a href="tel:+918217337597"><Phone size={21} /><span><small>CALL ADMISSIONS</small>+91 821 733 7597</span></a><a href="mailto:nxtacademy69@gmail.com"><Mail size={21} /><span><small>EMAIL US</small>nxtacademy69@gmail.com</span></a><div><MapPin size={21} /><span><small>LOCATION</small>Mangaluru, Karnataka</span></div></div></div>
-        <form onSubmit={prepareEnquiry} className="enquiry-form"><h3>Your future starts with a conversation.</h3><div className="form-grid"><label>Full name<input name="name" required placeholder="Your name" /></label><label>Phone number<input name="phone" required inputMode="tel" pattern="[0-9+ ]{8,15}" placeholder="Your mobile number" /></label><label>Email address<input name="email" type="email" required placeholder="you@example.com" /></label><label>Current qualification<select name="qualification" required defaultValue=""><option value="" disabled>Select qualification</option><option>SSLC</option><option>PUC</option><option>Other</option></select></label></div><label>Interested course<select name="course" required defaultValue=""><option value="" disabled>Choose your course</option>{programs.map(course => <option key={course.title}>{course.title}</option>)}</select></label><label>Your message <span>(optional)</span><textarea name="message" rows={3} placeholder="What would you like to know?" /></label><button type="submit" className="form-submit">Prepare enquiry <MessageCircle size={19} /></button>{whatsappUrl && <div className="enquiry-ready"><CircleCheck size={20} /><div><strong>Your enquiry is ready.</strong><p>It has not been sent yet. Review and send it on WhatsApp.</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Open WhatsApp <ArrowUpRight size={17} /></a></div></div>}</form>
+        <form onSubmit={prepareEnquiry} className="enquiry-form"><h3>Your future starts with a conversation.</h3><div className="form-grid"><label>Full name<input name="name" required placeholder="Your name" /></label><label>Phone number<input name="phone" required inputMode="tel" pattern="[0-9+ ]{8,15}" placeholder="Your mobile number" /></label><label>Email address<input name="email" type="email" required placeholder="you@example.com" /></label><label>Current qualification<select name="qualification" required defaultValue=""><option value="" disabled>Select qualification</option><option>10th</option><option>12th</option><option>Other</option></select></label></div><label>Interested course<select name="course" required defaultValue=""><option value="" disabled>Choose your course</option>{programs.map(course => <option key={course.title}>{course.title}</option>)}</select></label><button type="submit" className="form-submit">Prepare enquiry <MessageCircle size={19} /></button>{whatsappUrl && <div className="enquiry-ready"><CircleCheck size={20} /><div><strong>Your enquiry is ready.</strong><p>It has not been sent yet. Review and send it on WhatsApp.</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Open WhatsApp <ArrowUpRight size={17} /></a></div></div>}</form>
       </section>
     </main>
 
