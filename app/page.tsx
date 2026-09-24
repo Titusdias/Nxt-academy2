@@ -5,7 +5,7 @@ import { FormEvent, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
   ChevronDown, CircleCheck, Mail, MapPin,
-  MessageCircle, Phone, Users,
+  MessageCircle, Phone, PlaneTakeoff, Users,
 } from 'lucide-react';
 import ReferenceHero, { AcademyHeader } from './components/ReferenceHero';
 import ProgramDialog from './components/ProgramDialog';
@@ -22,16 +22,16 @@ const advantageIcons = [BookOpen, Users, BriefcaseBusiness, CircleCheck];
 
 const programs = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/course-bba-aviation.png' },
-  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-hospitality.png' },
+  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-aviation-hospitality-v2.png' },
   { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
 ];
 
 const steps = [
-  ['01', 'Discover', 'Understand your interests and direction.'],
-  ['02', 'Learn', 'Build a strong foundation of skills.'],
-  ['03', 'Practice', 'Apply learning through guided activities.'],
-  ['04', 'Grow', 'Develop confidence and professionalism.'],
-  ['05', 'Prepare', 'Get ready for your next career step.'],
+  ['01', 'Discover'],
+  ['02', 'Learn'],
+  ['03', 'Practice'],
+  ['04', 'Grow'],
+  ['05', 'Prepare'],
 ];
 
 const faqs = [
@@ -109,9 +109,10 @@ export default function Home() {
             <path className="roadmap-surface" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
             <path className="roadmap-centre" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
           </svg>
-          {steps.map(([number, title, text], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}`} key={title}>
+          {steps.map(([number, title], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}`} key={title}>
             <span className="roadmap-pin"><b>{number}</b></span>
-            <div className="roadmap-copy"><h3>{title}</h3><p>{text}</p></div>
+            <div className="roadmap-copy"><h3>{title}</h3></div>
+            {index === steps.length - 1 && <span className="roadmap-flight" aria-hidden="true"><PlaneTakeoff size={34} /></span>}
           </article>)}
         </div>
       </section>

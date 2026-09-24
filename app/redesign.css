@@ -209,9 +209,10 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 }
 
 /* Detailed, scrollable course information panel. */
-.program-dialog{width:min(860px,94vw);max-height:90svh;margin:auto;padding:0;overflow:auto;border:0;border-radius:24px;background:#f5f9fa;color:var(--ink);box-shadow:0 32px 90px rgba(3,29,45,.34);scrollbar-width:thin;scrollbar-color:#75c7a0 transparent}
+.program-dialog{width:min(860px,94vw);max-height:90svh;margin:auto;padding:0;overflow:hidden;border:0;border-radius:24px;background:#f5f9fa;color:var(--ink);box-shadow:0 32px 90px rgba(3,29,45,.34)}
 .program-dialog::backdrop{background:rgba(3,29,45,.78);backdrop-filter:blur(7px)}
-.program-dialog .program-dialog-shell{position:relative;padding:0}
+.program-dialog .program-dialog-shell{position:relative;display:flex;flex-direction:column;max-height:90svh;padding:0}
+.program-dialog-scroll{min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#75c7a0 transparent;overscroll-behavior:contain}
 .program-dialog-image{position:relative;height:250px;overflow:hidden;background:#dce8ed}
 .program-dialog-image:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,29,45,.42))}
 .program-dialog-image img{object-fit:cover;object-position:center 38%;transition:transform .7s ease}
@@ -249,7 +250,8 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .program-dialog .program-focus-list li:hover{transform:translateX(3px);border-color:var(--green);background:var(--green);color:#fff}
 .program-focus-list li:hover>span{color:#fff}
 .program-dialog .fineprint{margin:20px 0 0;color:#748995;font-size:11.5px;line-height:1.65}
-.program-dialog .program-enquire{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding:17px 19px;border-radius:11px;background:var(--green);color:#fff;font-size:13px;font-weight:850;letter-spacing:.3px;transition:background .25s,transform .25s}
+.program-dialog-action{position:relative;z-index:3;flex:none;padding:14px 44px 18px;border-top:1px solid #d7e6e9;background:rgba(245,249,250,.96);box-shadow:0 -12px 30px rgba(3,29,45,.08);backdrop-filter:blur(10px)}
+.program-dialog .program-enquire{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0;padding:17px 19px;border-radius:11px;background:var(--green);color:#fff;font-size:13px;font-weight:850;letter-spacing:.3px;transition:background .25s,transform .25s}
 .program-dialog .program-enquire:hover{background:var(--blue);transform:translateY(-2px)}
 .program-dialog .program-enquire svg{transition:transform .25s}
 .program-dialog .program-enquire:hover svg{transform:translate(3px,-3px)}
@@ -258,6 +260,7 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .program-dialog{width:94vw;max-height:88svh;border-radius:19px}
   .program-dialog-image{height:190px}
   .program-dialog-content{padding:28px 20px 30px}
+  .program-dialog-action{padding:11px 14px 14px}
   .program-dialog .dialog-close{position:fixed;right:5vw;top:7svh;width:40px;height:40px}
   .program-dialog h2{font-size:30px;letter-spacing:-1px}
   .program-dialog .program-summary{font-size:14px;line-height:1.65}
@@ -292,17 +295,19 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .roadmap-pin b{font-size:13px;letter-spacing:.6px;transform:rotate(45deg)}
 .roadmap-stop:nth-of-type(even) .roadmap-pin{background:var(--blue)}
 .roadmap-stop:hover .roadmap-pin{background:#f2b927;transform:translate(-50%,-50%) rotate(-45deg) scale(1.08)}
-.roadmap-copy{position:absolute;width:224px;padding:15px 17px;border:1px solid #d8e6ea;border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 12px 30px rgba(6,38,59,.11);transition:border-color .25s,box-shadow .25s,transform .25s}
+.roadmap-copy{position:absolute;width:160px;padding:14px 17px;border:1px solid #d8e6ea;border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 12px 30px rgba(6,38,59,.11);text-align:center;transition:border-color .25s,box-shadow .25s,transform .25s}
 .roadmap-stop:nth-of-type(odd) .roadmap-copy{left:0;bottom:58px;transform:translateX(-50%)}
 .roadmap-stop:nth-of-type(even) .roadmap-copy{left:0;top:58px;transform:translateX(-50%)}
 .roadmap-stop.roadmap-stop-1 .roadmap-copy{left:40px;bottom:56px;transform:none!important}
-.roadmap-stop.roadmap-stop-5 .roadmap-copy{left:-230px;top:58px;transform:none!important}
+.roadmap-stop.roadmap-stop-5 .roadmap-copy{left:-170px;top:58px;transform:none!important}
 .roadmap-stop:hover .roadmap-copy{border-color:var(--green);box-shadow:0 18px 36px rgba(6,38,59,.16)}
 .roadmap-stop:nth-of-type(odd):hover .roadmap-copy{transform:translate(-50%,-4px)}
 .roadmap-stop:nth-of-type(even):hover .roadmap-copy{transform:translate(-50%,4px)}
 .roadmap-stop.roadmap-stop-1:hover .roadmap-copy,.roadmap-stop.roadmap-stop-5:hover .roadmap-copy{transform:translateY(-4px)!important}
-.roadmap-copy h3{margin:0 0 6px;color:var(--ink);font-size:19px}
-.roadmap-copy p{margin:0;color:#607783;font-size:13px;line-height:1.5}
+.roadmap-copy h3{margin:0;color:var(--ink);font-size:21px}
+.roadmap-flight{position:absolute;z-index:4;left:-105px;top:-96px;width:68px;height:68px;display:grid;place-items:center;border:1px solid rgba(18,174,114,.34);border-radius:50%;background:#fff;color:var(--blue);box-shadow:0 14px 34px rgba(6,38,59,.18);animation:roadmap-flight 2.4s ease-in-out infinite}
+.roadmap-flight:after{content:'';position:absolute;width:58px;height:2px;right:52px;bottom:12px;border-radius:10px;background:linear-gradient(90deg,transparent,#78d8ae)}
+@keyframes roadmap-flight{0%,100%{transform:translate(0,4px) rotate(-5deg)}50%{transform:translate(10px,-7px) rotate(2deg)}}
 
 @media(max-width:760px){
   .journey-roadmap{padding-inline:18px}
@@ -326,7 +331,11 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .roadmap-stop:nth-of-type(even) .roadmap-copy{margin-left:0}
   .roadmap-stop:hover .roadmap-copy,.roadmap-stop:nth-of-type(odd):hover .roadmap-copy,.roadmap-stop:nth-of-type(even):hover .roadmap-copy,.roadmap-stop-1:hover .roadmap-copy,.roadmap-stop-5:hover .roadmap-copy{transform:translateY(-2px)!important}
   .roadmap-copy h3{font-size:18px}
+  .roadmap-flight{left:64px;top:-28px;width:50px;height:50px}
+  .roadmap-flight:after{width:34px;right:38px;bottom:8px}
 }
+
+@media(prefers-reduced-motion:reduce){.roadmap-flight{animation:none}}
 
 /* Responsive photo and video gallery for Life at NXT. */
 .life-redesign{background:linear-gradient(180deg,#fff 0%,#f4f9fb 100%)}

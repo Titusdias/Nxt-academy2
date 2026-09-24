@@ -32,7 +32,7 @@ const programDetails: Record<string, ProgramDetails> = {
     description: 'A focused one-year diploma that introduces practical service skills for aviation and hospitality environments. The program supports students in developing passenger service, guest relations, communication and professional presentation skills.',
     fees: [{ label: 'Program fee', value: '₹1,30,000' }],
     focus: ['Guest and passenger relations', 'Airport and hospitality service basics', 'Professional presentation and communication', 'Practical industry-focused learning'],
-    image: '/course-diploma-hospitality.png',
+    image: '/course-diploma-aviation-hospitality-v2.png',
   },
   'Diploma in Hospital Administration': {
     duration: '1 year',
@@ -46,6 +46,7 @@ const programDetails: Record<string, ProgramDetails> = {
 
 export default function ProgramDialog({ program, onClose }: { program: string | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const details = program ? programDetails[program] : null;
   const whatsappHref = `https://wa.me/918217337597?text=${encodeURIComponent(`Hello NXT Academy, I would like to enquire about ${program ?? 'your courses'}.`)}`;
 
@@ -61,12 +62,37 @@ export default function ProgramDialog({ program, onClose }: { program: string | 
     return () => { document.body.style.overflow = ''; };
   }, [program]);
 
+  useEffect(() => {
+    const scroller = scrollRef.current;
+    if (!program || !scroller) return;
+
+    scroller.scrollTop = 0;
+    let frame = 0;
+    let previousTime = 0;
+    const beginsAt = performance.now() + 1400;
+
+    const autoScroll = (time: number) => {
+      if (time >= beginsAt && previousTime) {
+        const isInteracting = scroller.contains(document.activeElement);
+        if (!isInteracting && scroller.scrollTop < scroller.scrollHeight - scroller.clientHeight - 1) {
+          scroller.scrollTop += Math.min(2.2, (time - previousTime) * 0.05);
+        }
+      }
+      previousTime = time;
+      frame = window.requestAnimationFrame(autoScroll);
+    };
+
+    frame = window.requestAnimationFrame(autoScroll);
+    return () => window.cancelAnimationFrame(frame);
+  }, [program]);
+
   return <dialog ref={ref} className="program-dialog" aria-labelledby="program-title" onCancel={onClose} onClick={event => { if (event.target === ref.current) onClose(); }}>
     <div className="program-dialog-shell">
       <button className="dialog-close" onClick={onClose} aria-label="Close program details"><X /></button>
       {details && <>
-        <div className="program-dialog-image"><Image src={details.image} fill unoptimized sizes="(max-width:760px) 100vw, 760px" alt="" /></div>
-        <div className="program-dialog-content">
+        <div className="program-dialog-scroll" ref={scrollRef}>
+          <div className="program-dialog-image"><Image src={details.image} fill unoptimized sizes="(max-width:760px) 100vw, 760px" alt="" /></div>
+          <div className="program-dialog-content">
           <div className="section-label">EXPLORE THE PROGRAM / NXT ACADEMY</div>
           <h2 id="program-title">{program}</h2>
           <p className="program-summary">{details.description}</p>
@@ -87,9 +113,10 @@ export default function ProgramDialog({ program, onClose }: { program: string | 
             <ul className="program-focus-list">{details.focus.map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ul>
           </section>
 
-          <p className="fineprint">Fees shown are based on the current information provided. Confirm eligibility, inclusions, payment schedule and the next intake directly with admissions.</p>
-          <a href={whatsappHref} className="program-enquire" target="_blank" rel="noopener noreferrer" onClick={onClose}>ENQUIRE ABOUT THIS PROGRAM <ArrowUpRight size={18} /></a>
+            <p className="fineprint">Fees shown are based on the current information provided. Confirm eligibility, inclusions, payment schedule and the next intake directly with admissions.</p>
+          </div>
         </div>
+        <div className="program-dialog-action"><a href={whatsappHref} className="program-enquire" target="_blank" rel="noopener noreferrer" onClick={onClose}>ENQUIRE ABOUT THIS PROGRAM <ArrowUpRight size={18} /></a></div>
       </>}
     </div>
   </dialog>;
