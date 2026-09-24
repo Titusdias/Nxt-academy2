@@ -32,7 +32,7 @@ const programDetails: Record<string, ProgramDetails> = {
     description: 'A focused one-year diploma that introduces practical service skills for aviation and hospitality environments. The program supports students in developing passenger service, guest relations, communication and professional presentation skills.',
     fees: [{ label: 'Program fee', value: '₹1,30,000' }],
     focus: ['Guest and passenger relations', 'Airport and hospitality service basics', 'Professional presentation and communication', 'Practical industry-focused learning'],
-    image: '/course-diploma-aviation-hospitality-v2.png',
+    image: '/course-diploma-aviation-hospitality-v3.png',
   },
   'Diploma in Hospital Administration': {
     duration: '1 year',
@@ -67,23 +67,20 @@ export default function ProgramDialog({ program, onClose }: { program: string | 
     if (!program || !scroller) return;
 
     scroller.scrollTop = 0;
-    let frame = 0;
-    let previousTime = 0;
-    const beginsAt = performance.now() + 1400;
-
-    const autoScroll = (time: number) => {
-      if (time >= beginsAt && previousTime) {
+    let scrollTimer = 0;
+    const startTimer = window.setTimeout(() => {
+      scrollTimer = window.setInterval(() => {
         const isInteracting = scroller.contains(document.activeElement);
-        if (!isInteracting && scroller.scrollTop < scroller.scrollHeight - scroller.clientHeight - 1) {
-          scroller.scrollTop += Math.min(2.2, (time - previousTime) * 0.05);
-        }
-      }
-      previousTime = time;
-      frame = window.requestAnimationFrame(autoScroll);
-    };
+        const reachedBottom = scroller.scrollTop >= scroller.scrollHeight - scroller.clientHeight - 1;
+        if (!isInteracting && !reachedBottom) scroller.scrollTop += 2;
+        if (reachedBottom) window.clearInterval(scrollTimer);
+      }, 32);
+    }, 650);
 
-    frame = window.requestAnimationFrame(autoScroll);
-    return () => window.cancelAnimationFrame(frame);
+    return () => {
+      window.clearTimeout(startTimer);
+      window.clearInterval(scrollTimer);
+    };
   }, [program]);
 
   return <dialog ref={ref} className="program-dialog" aria-labelledby="program-title" onCancel={onClose} onClick={event => { if (event.target === ref.current) onClose(); }}>

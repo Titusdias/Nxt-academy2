@@ -14,7 +14,7 @@ const links = [
 
 const heroCourses = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/course-bba-aviation.png' },
-  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-aviation-hospitality-v2.png' },
+  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-aviation-hospitality-v3.png' },
   { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-admin.png' },
 ];
 

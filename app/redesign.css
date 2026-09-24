@@ -294,6 +294,7 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .roadmap-pin{position:absolute;left:0;top:0;width:66px;height:66px;display:grid;place-items:center;border:5px solid #fff;border-radius:50% 50% 50% 0;background:var(--green);color:#fff;box-shadow:0 12px 28px rgba(6,38,59,.28);transform:translate(-50%,-50%) rotate(-45deg);transition:background .25s,transform .25s}
 .roadmap-pin b{font-size:13px;letter-spacing:.6px;transform:rotate(45deg)}
 .roadmap-stop:nth-of-type(even) .roadmap-pin{background:var(--blue)}
+.roadmap-stop-1 .roadmap-pin{background:#f2b927}
 .roadmap-stop:hover .roadmap-pin{background:#f2b927;transform:translate(-50%,-50%) rotate(-45deg) scale(1.08)}
 .roadmap-copy{position:absolute;width:160px;padding:14px 17px;border:1px solid #d8e6ea;border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 12px 30px rgba(6,38,59,.11);text-align:center;transition:border-color .25s,box-shadow .25s,transform .25s}
 .roadmap-stop:nth-of-type(odd) .roadmap-copy{left:0;bottom:58px;transform:translateX(-50%)}
@@ -313,7 +314,7 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .journey-roadmap{padding-inline:18px}
   .roadmap-heading{text-align:left}
   .roadmap-heading h2{font-size:39px;line-height:1.05}
-  .roadmap-stage{height:auto;margin-top:30px;padding:7px 0}
+  .roadmap-stage{height:auto;margin-top:30px;padding:7px 0;display:flex;flex-direction:column-reverse}
   .roadmap-stage:before,.roadmap-stage:after{content:none}
   .roadmap-road{display:none}
   .roadmap-mobile-road{position:absolute;z-index:0;left:0;top:7px;display:block;width:100px;height:640px;overflow:visible}
