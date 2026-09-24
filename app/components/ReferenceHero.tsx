@@ -13,9 +13,9 @@ const links = [
 ];
 
 const heroCourses = [
-  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/course-bba-promo.webp', position: '73% center' },
-  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-aviation-hospitality-promo.webp', position: '74% center' },
-  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-administration-promo.webp', position: '76% center' },
+  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/course-bba-aviation.png' },
+  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-aviation-hospitality-v3.png' },
+  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-admin.png' },
 ];
 
 const heroSlides = [
@@ -80,7 +80,7 @@ export default function ReferenceHero() {
         <ChevronDown size={20} aria-hidden="true" />
       </div>
       <div className="hero-course-circles" aria-label="Programs at NXT Academy">{heroCourses.map(course => <a href="#courses" key={course.title}>
-        <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 78vw, 20vw" alt="" style={{ objectPosition: course.position }} /></span>
+        <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 78vw, 20vw" alt="" /></span>
         <strong>{course.title}</strong>
         <small>{course.duration}</small>
       </a>)}</div>

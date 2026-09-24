@@ -24,7 +24,7 @@ const programDetails: Record<string, ProgramDetails> = {
       { label: '3rd year', value: '₹1,00,000' },
     ],
     focus: ['Aviation and hospitality operations', 'Business management fundamentals', 'Guest and passenger service', 'Professional communication and presentation'],
-    image: '/course-bba-promo.webp',
+    image: '/course-bba-aviation.png',
   },
   'Diploma in Aviation and Hospitality Management': {
     duration: '1 year',
@@ -32,7 +32,7 @@ const programDetails: Record<string, ProgramDetails> = {
     description: 'A focused one-year diploma that introduces practical service skills for aviation and hospitality environments. The program supports students in developing passenger service, guest relations, communication and professional presentation skills.',
     fees: [{ label: 'Program fee', value: '₹1,30,000' }],
     focus: ['Guest and passenger relations', 'Airport and hospitality service basics', 'Professional presentation and communication', 'Practical industry-focused learning'],
-    image: '/course-diploma-aviation-hospitality-promo.webp',
+    image: '/course-diploma-aviation-hospitality-v3.png',
   },
   'Diploma in Hospital Administration': {
     duration: '1 year',
@@ -40,7 +40,7 @@ const programDetails: Record<string, ProgramDetails> = {
     description: 'A one-year diploma introducing the day-to-day foundations of hospital administration. Students learn about patient coordination, front-office practices, healthcare records and professional communication in a service-focused environment.',
     fees: [{ label: 'Program fee', value: '₹80,000' }],
     focus: ['Hospital front-office administration', 'Patient service and coordination', 'Healthcare records and office practices', 'Professional communication'],
-    image: '/course-hospital-administration-promo.webp',
+    image: '/course-hospital-admin.png',
   },
 };
 
