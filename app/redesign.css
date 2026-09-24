@@ -361,13 +361,10 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 
 /* Responsive photo and video gallery for Life at NXT. */
 .life-redesign{background:linear-gradient(180deg,#fff 0%,#f4f9fb 100%)}
-.life-media-grid{display:grid;grid-template-columns:.86fr 1.28fr .86fr;grid-template-rows:1fr 1fr;gap:18px;height:680px}
+.life-media-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr;gap:18px;height:520px}
 .life-media-card{position:relative;isolation:isolate;overflow:hidden;margin:0;border:1px solid rgba(255,255,255,.72);border-radius:22px;background:#082d43;box-shadow:0 20px 48px rgba(6,38,59,.14);transition:transform .35s ease,box-shadow .35s ease}
 .life-media-card:hover{transform:translateY(-5px);box-shadow:0 27px 58px rgba(6,38,59,.2)}
-.life-video-one{grid-column:1;grid-row:1/3}
-.life-photo-one{grid-column:2;grid-row:1}
-.life-video-two{grid-column:3;grid-row:1/3}
-.life-photo-two{grid-column:2;grid-row:2}
+.life-video-one,.life-video-two,.life-photo-two{grid-column:auto;grid-row:auto}
 .life-media-card img,.life-media-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .life-media-card img{transition:transform .7s cubic-bezier(.2,.8,.2,1)}
 .life-media-card:hover img{transform:scale(1.045)}
@@ -377,10 +374,26 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .life-video figcaption{top:22px;bottom:auto}
 .life-media-card figcaption span{font-size:10px;font-weight:750;letter-spacing:1.35px;text-transform:uppercase}
 .life-media-card figcaption h3{margin:8px 0 0;font-size:clamp(20px,2vw,29px);font-weight:650;letter-spacing:-.7px}
+.life-gallery-open{position:absolute;z-index:3;inset:0;width:100%;border:0;background:transparent;cursor:pointer}
+.life-gallery-open:focus-visible{outline:4px solid #fff;outline-offset:-7px;border-radius:22px}
 .life-swipe-hint{display:none!important}
 
+.campus-gallery{position:fixed;z-index:120;inset:0;display:grid;place-items:center;padding:22px;background:rgba(2,28,44,.86);backdrop-filter:blur(9px)}
+.campus-gallery-panel{position:relative;width:min(1050px,94vw);padding:16px;border:1px solid rgba(255,255,255,.38);border-radius:24px;background:#f8fbfc;box-shadow:0 30px 90px rgba(0,0,0,.42)}
+.campus-gallery-close{position:absolute;z-index:3;top:28px;right:28px;display:grid;width:46px;height:46px;place-items:center;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(4,43,64,.9);color:#fff;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.campus-gallery-close:hover{background:var(--green);transform:scale(1.05)}
+.campus-gallery-image{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:14px;background:#dce8ed}
+.campus-gallery-image img{object-fit:contain}
+.campus-gallery-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin:14px 0 10px;color:var(--blue);font-size:13px;font-weight:800;letter-spacing:.08em}
+.campus-gallery-controls button{display:grid;width:38px;height:38px;place-items:center;border:1px solid #bdd5df;border-radius:50%;background:#fff;color:var(--blue);cursor:pointer;transition:border-color .2s ease,background .2s ease,color .2s ease}
+.campus-gallery-controls button:hover{border-color:var(--green);background:var(--green);color:#fff}
+.campus-gallery-thumbs{display:flex;justify-content:center;gap:10px}
+.campus-gallery-thumbs button{position:relative;width:96px;aspect-ratio:16/9;overflow:hidden;border:3px solid transparent;border-radius:9px;background:#dce8ed;cursor:pointer;opacity:.68;transition:border-color .2s ease,opacity .2s ease,transform .2s ease}
+.campus-gallery-thumbs button:hover,.campus-gallery-thumbs button.is-active{border-color:var(--green);opacity:1;transform:translateY(-2px)}
+.campus-gallery-thumbs img{object-fit:cover}
+
 @media(max-width:1050px) and (min-width:761px){
-  .life-media-grid{height:600px;grid-template-columns:.9fr 1.15fr .9fr}
+  .life-media-grid{height:500px;grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
 @media(max-width:760px){
@@ -392,6 +405,12 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .life-video figcaption{top:20px;bottom:auto}
   .life-media-card figcaption h3{font-size:23px}
   .life-swipe-hint{display:flex!important;align-items:center;justify-content:flex-end;gap:8px;margin:10px 1px 0!important;color:var(--blue)!important;font-size:12px!important;font-weight:800;letter-spacing:.4px}
+  .campus-gallery{padding:10px}
+  .campus-gallery-panel{width:100%;padding:10px;border-radius:18px}
+  .campus-gallery-close{top:18px;right:18px;width:42px;height:42px}
+  .campus-gallery-image{border-radius:11px}
+  .campus-gallery-thumbs{gap:7px}
+  .campus-gallery-thumbs button{width:min(27vw,90px);border-width:2px}
 }
 
 @media(prefers-reduced-motion:reduce){.life-media-card,.life-media-card img{transition:none!important}}

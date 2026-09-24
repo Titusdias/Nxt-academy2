@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { FormEvent, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
-  ChevronDown, CircleCheck, Mail, MapPin,
-  MessageCircle, Phone, PlaneTakeoff, Users,
+  ChevronDown, ChevronLeft, ChevronRight, CircleCheck, Mail, MapPin,
+  MessageCircle, Phone, PlaneTakeoff, Users, X,
 } from 'lucide-react';
 import ReferenceHero, { AcademyHeader } from './components/ReferenceHero';
 import ProgramDialog from './components/ProgramDialog';
@@ -24,6 +24,12 @@ const programs = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/course-bba-aviation.png' },
   { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-aviation-hospitality-v3.png' },
   { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
+];
+
+const campusPhotos = [
+  { src: '/academy-campus-exterior-2026.webp', alt: 'NXT Academy campus building and entrance in Mangaluru' },
+  { src: '/academy-campus-hero-new.jpeg', alt: 'Front view of NXT Academy of Creative Studies' },
+  { src: '/academy-campus.jpeg', alt: 'NXT Academy campus exterior' },
 ];
 
 const steps = [
@@ -47,6 +53,8 @@ export default function Home() {
   const [program, setProgram] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState(0);
   const [activeAdvantage, setActiveAdvantage] = useState<number | null>(null);
+  const [campusGalleryOpen, setCampusGalleryOpen] = useState(false);
+  const [campusPhoto, setCampusPhoto] = useState(0);
   const [whatsappUrl, setWhatsappUrl] = useState('');
 
   function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
@@ -99,7 +107,7 @@ export default function Home() {
       </section>
 
       <section className="section experience-redesign">
-        <div className="experience-copy"><span className="eyebrow">THE LEARNING EXPERIENCE</span><h2>Less watching.<br /><em>More doing.</em></h2><p>Practical activities make it easier to understand, remember and confidently use what you learn.</p><div className="activity-list">{['Presentation practice', 'Communication sessions', 'Role play & group activities', 'Professional grooming', 'Practical demonstrations', 'Career guidance', 'Social activities', 'Industrial visits'].map(item => <span key={item}><CircleCheck size={18} />{item}</span>)}</div></div>
+        <div className="experience-copy"><span className="eyebrow">THE LEARNING EXPERIENCE</span><h2>Less Watching.<br /><em>More Doing.</em></h2><p>Practical activities make it easier to understand, remember and confidently use what you learn.</p><div className="activity-list">{['Presentation Practice', 'Communication Sessions', 'Role Play & Group Activities', 'Professional Grooming', 'Practical Demonstrations', 'Career Guidance', 'Social Activities', 'Industrial Visits'].map(item => <span key={item}><CircleCheck size={18} />{item}</span>)}</div></div>
       </section>
 
       <section id="journey" className="section journey-roadmap">
@@ -131,39 +139,48 @@ export default function Home() {
             <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-01-poster.jpg" aria-label="A special celebration at NXT Academy">
               <source src="/media/nxt-campus-life-01.mp4" type="video/mp4" />
             </video>
-            <figcaption><span>01 · CAMPUS MOMENTS</span><h3>Celebrating together</h3></figcaption>
-          </figure>
-          <figure className="life-media-card life-photo life-photo-one">
-            <Image src="/academy-learning.webp" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="Students learning together" />
-            <figcaption><span>02 · THE ACADEMY EXPERIENCE</span><h3>Learn together</h3></figcaption>
+            <figcaption><span>01 · CAMPUS MOMENTS</span><h3>Celebrating Together</h3></figcaption>
           </figure>
           <figure className="life-media-card life-video life-video-two">
             <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-02-poster.jpg" aria-label="A look inside NXT Academy">
               <source src="/media/nxt-campus-life-02.mp4" type="video/mp4" />
             </video>
-            <figcaption><span>03 · INSIDE NXT</span><h3>A look around campus</h3></figcaption>
+            <figcaption><span>02 · INSIDE NXT</span><h3>A Look Around Campus</h3></figcaption>
           </figure>
           <figure className="life-media-card life-photo life-photo-two">
             <Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
-            <figcaption><span>04 · YOUR CAMPUS</span><h3>A place to begin</h3></figcaption>
+            <figcaption><span>03 · YOUR CAMPUS</span><h3>A Place to Begin</h3></figcaption>
+            <button className="life-gallery-open" type="button" aria-label="Open NXT Academy campus photo gallery" onClick={() => { setCampusPhoto(0); setCampusGalleryOpen(true); }} />
           </figure>
         </div>
         <p className="life-swipe-hint" aria-hidden="true">Swipe to explore <ArrowRight size={16} /></p>
       </section>
 
       <section id="faq" className="section faq-redesign">
-        <div className="faq-heading"><span className="eyebrow">HERE TO HELP</span><h2>Questions from students<br /><em>and parents.</em></h2><p>Clear answers for your next step.</p></div>
+        <div className="faq-heading"><span className="eyebrow">HERE TO HELP</span><h2>Questions From Students<br /><em>And Parents.</em></h2><p>Clear answers for your next step.</p></div>
         <div className="faq-list">{faqs.map(([question, answer], index) => <article key={question}><h3><button onClick={() => setOpenFaq(openFaq === index ? -1 : index)} aria-expanded={openFaq === index} aria-controls={`answer-${index}`}>{question}<ChevronDown className={openFaq === index ? 'rotated' : ''} size={20} /></button></h3><div id={`answer-${index}`} hidden={openFaq !== index}><p>{answer}</p></div></article>)}</div>
       </section>
 
       <section id="contact" className="section contact-redesign">
-        <div className="contact-copy"><span className="eyebrow">START A CONVERSATION</span><h2>Let’s talk about<br /><em>your next step.</em></h2><p>Tell us what you’re interested in. Your enquiry will be prepared for WhatsApp so you can review it before sending.</p><div className="contact-links"><a href="tel:+918217337597"><Phone size={21} /><span><small>CALL ADMISSIONS</small>+91 821 733 7597</span></a><a href="mailto:nxtacademy69@gmail.com"><Mail size={21} /><span><small>EMAIL US</small>nxtacademy69@gmail.com</span></a><div><MapPin size={21} /><span><small>LOCATION</small>Mangaluru, Karnataka</span></div></div></div>
+        <div className="contact-copy"><span className="eyebrow">CONTACT US</span><h2>Let’s Talk About<br /><em>Your Next Step.</em></h2><p>Tell us what you’re interested in. Your enquiry will be prepared for WhatsApp so you can review it before sending.</p><div className="contact-links"><a href="tel:+918217337597"><Phone size={21} /><span><small>CALL ADMISSIONS</small>+91 821 733 7597</span></a><a href="mailto:nxtacademy69@gmail.com"><Mail size={21} /><span><small>EMAIL US</small>nxtacademy69@gmail.com</span></a><div><MapPin size={21} /><span><small>LOCATION</small>Mangaluru, Karnataka</span></div></div></div>
         <form onSubmit={prepareEnquiry} className="enquiry-form"><h3>Your future starts with a conversation.</h3><div className="form-grid"><label>Full name<input name="name" required placeholder="Your name" /></label><label>Phone number<input name="phone" required inputMode="tel" pattern="[0-9+ ]{8,15}" placeholder="Your mobile number" /></label><label>Email address<input name="email" type="email" required placeholder="you@example.com" /></label><label>Current qualification<select name="qualification" required defaultValue=""><option value="" disabled>Select qualification</option><option>10th</option><option>12th</option><option>Other</option></select></label></div><label>Interested course<select name="course" required defaultValue=""><option value="" disabled>Choose your course</option>{programs.map(course => <option key={course.title}>{course.title}</option>)}</select></label><button type="submit" className="form-submit">Prepare enquiry <MessageCircle size={19} /></button>{whatsappUrl && <div className="enquiry-ready"><CircleCheck size={20} /><div><strong>Your enquiry is ready.</strong><p>It has not been sent yet. Review and send it on WhatsApp.</p><a href={whatsappUrl} target="_blank" rel="noopener noreferrer">Open WhatsApp <ArrowUpRight size={17} /></a></div></div>}</form>
       </section>
     </main>
 
-    <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student life</a></div><div><h3>Your next step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#contact">Enquire</a><a href="#faq">FAQs</a></div><div><h3>Contact</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
+    <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student Life</a></div><div><h3>Your Next Step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#contact">Enquire</a><a href="#faq">FAQs</a></div><div><h3>Contact Us</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
     <a className="floating-whatsapp" href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={23} /></a>
     <ProgramDialog program={program} onClose={() => setProgram(null)} />
+    {campusGalleryOpen && <div className="campus-gallery" role="dialog" aria-modal="true" aria-label="NXT Academy campus photos" onClick={() => setCampusGalleryOpen(false)}>
+      <div className="campus-gallery-panel" onClick={event => event.stopPropagation()}>
+        <button className="campus-gallery-close" type="button" aria-label="Close campus photo gallery" onClick={() => setCampusGalleryOpen(false)}><X /></button>
+        <div className="campus-gallery-image"><Image src={campusPhotos[campusPhoto].src} fill unoptimized sizes="94vw" alt={campusPhotos[campusPhoto].alt} /></div>
+        <div className="campus-gallery-controls">
+          <button type="button" aria-label="Previous campus photo" onClick={() => setCampusPhoto(current => (current - 1 + campusPhotos.length) % campusPhotos.length)}><ChevronLeft /></button>
+          <span>{campusPhoto + 1} / {campusPhotos.length}</span>
+          <button type="button" aria-label="Next campus photo" onClick={() => setCampusPhoto(current => (current + 1) % campusPhotos.length)}><ChevronRight /></button>
+        </div>
+        <div className="campus-gallery-thumbs">{campusPhotos.map((photo, index) => <button type="button" className={campusPhoto === index ? 'is-active' : ''} aria-label={`Show campus photo ${index + 1}`} onClick={() => setCampusPhoto(index)} key={photo.src}><Image src={photo.src} fill unoptimized sizes="100px" alt="" /></button>)}</div>
+      </div>
+    </div>}
   </>;
 }
