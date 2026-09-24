@@ -146,6 +146,8 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .site-footer .brand-mark{width:78px;height:78px}
 .site-footer .brand-mark img{object-fit:contain!important;transform:none!important}
 .site-footer .brand-name{display:none}
+.site-footer .footer-contact a{gap:9px!important}
+.site-footer .footer-contact svg{flex:none;color:#81ddb0}
 
 @media(max-width:1180px){
   .site-header .brand{gap:8px}
