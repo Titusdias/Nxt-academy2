@@ -18,6 +18,12 @@ const heroCourses = [
   { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-admin.png' },
 ];
 
+const heroSlides = [
+  { image: '/academy-campus-hero-new.jpeg', alt: 'NXT Academy of Creative Studies campus in Mangaluru', eyebrow: 'WELCOME TO NXT', title: 'A place to begin.' },
+  { image: '/academy-learning.webp', alt: 'Students taking part in an active learning session at NXT Academy', eyebrow: 'LEARN TOGETHER', title: 'Skills grow through practice.' },
+  { image: '/nxt-classroom-hero.webp', alt: 'Students building professional confidence in class', eyebrow: 'BUILD YOUR FUTURE', title: 'Confidence starts here.' },
+];
+
 const admissionsWhatsApp = 'https://wa.me/918217337597?text=Hello%20NXT%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20admissions.';
 
 export function AcademyHeader() {
@@ -46,19 +52,37 @@ export function AcademyHeader() {
 }
 
 export default function ReferenceHero() {
-  return <section id="home" className="campus-hero">
-    <Image className="campus-hero-image" src="/academy-campus-hero-new.jpeg" fill unoptimized preload sizes="100vw" alt="NXT Academy of Creative Studies campus in Mangaluru" />
-    <div className="campus-hero-shade" />
-    <div className="hero-program-intro">
-      <span>PROGRAMS AT NXT</span>
-      <strong>Choose the path that fits your future</strong>
-      <ChevronDown size={20} aria-hidden="true" />
-    </div>
-    <div className="hero-course-circles" aria-label="Programs at NXT Academy">{heroCourses.map(course => <a href="#courses" key={course.title}>
-      <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 28vw, 18vw" alt="" /></span>
-      <strong>{course.title}</strong>
-      <small>{course.duration}</small>
-    </a>)}</div>
-    <a className="campus-tour-link" href="#student-life">Take a look inside NXT <ArrowRight size={17} /></a>
-  </section>;
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setActiveSlide(current => (current + 1) % heroSlides.length), 3000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  return <>
+    <section id="home" className="campus-hero hero-slider" aria-roledescription="carousel" aria-label="NXT Academy highlights">
+      <div className="hero-slides">{heroSlides.map((slide, index) => <div className={`hero-slide${activeSlide === index ? ' is-active' : ''}`} key={slide.image} aria-hidden={activeSlide !== index}>
+        <Image className="campus-hero-image" src={slide.image} fill unoptimized preload={index === 0} sizes="100vw" alt={slide.alt} />
+      </div>)}</div>
+      <div className="campus-hero-shade" />
+      <div className="hero-slider-copy">
+        <span>{heroSlides[activeSlide].eyebrow}</span>
+        <h1>{heroSlides[activeSlide].title}</h1>
+      </div>
+      <div className="hero-slider-dots" aria-label="Choose hero image">{heroSlides.map((slide, index) => <button type="button" className={activeSlide === index ? 'is-active' : ''} aria-label={`Show image ${index + 1}: ${slide.title}`} aria-current={activeSlide === index ? 'true' : undefined} onClick={() => setActiveSlide(index)} key={slide.image} />)}</div>
+      <a className="campus-tour-link" href="#student-life">Take a look inside NXT <ArrowRight size={17} /></a>
+    </section>
+    <section className="hero-programs-section" aria-labelledby="programs-at-nxt-title">
+      <div className="hero-program-intro">
+        <span>PROGRAMS AT NXT</span>
+        <strong id="programs-at-nxt-title">Choose the path that fits your future</strong>
+        <ChevronDown size={20} aria-hidden="true" />
+      </div>
+      <div className="hero-course-circles" aria-label="Programs at NXT Academy">{heroCourses.map(course => <a href="#courses" key={course.title}>
+        <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 78vw, 20vw" alt="" /></span>
+        <strong>{course.title}</strong>
+        <small>{course.duration}</small>
+      </a>)}</div>
+    </section>
+  </>;
 }
