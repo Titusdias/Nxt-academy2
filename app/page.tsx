@@ -118,11 +118,29 @@ export default function Home() {
 
       <section id="student-life" className="section life-redesign">
         <div className="section-heading"><div><span className="eyebrow">BEYOND THE TEXTBOOK</span><h2>Life at <em>NXT.</em></h2></div><p>New skills, shared experiences and a little more confidence every day.</p></div>
-        <div className="life-grid">
-          <figure className="life-main"><Image src="/academy-learning.webp" fill unoptimized sizes="(max-width:760px) 100vw, 60vw" alt="Students learning together" /><figcaption><span>01 · THE ACADEMY EXPERIENCE</span><h3>Learn together</h3></figcaption></figure>
-          <figure><Image src="/nxt-classroom-hero.webp" fill unoptimized sizes="(max-width:760px) 100vw, 35vw" alt="A student building confidence in class" /><figcaption><span>02 · PROFESSIONAL GROWTH</span><h3>Find your voice</h3></figcaption></figure>
-          <figure><Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 100vw, 35vw" alt="NXT Academy campus in Mangaluru" /><figcaption><span>03 · YOUR CAMPUS</span><h3>A place to begin</h3></figcaption></figure>
+        <div className="life-media-grid">
+          <figure className="life-media-card life-video life-video-one">
+            <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-01-poster.jpg" aria-label="A special celebration at NXT Academy">
+              <source src="/media/nxt-campus-life-01.mp4" type="video/mp4" />
+            </video>
+            <figcaption><span>01 · CAMPUS MOMENTS</span><h3>Celebrating together</h3></figcaption>
+          </figure>
+          <figure className="life-media-card life-photo life-photo-one">
+            <Image src="/academy-learning.webp" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="Students learning together" />
+            <figcaption><span>02 · THE ACADEMY EXPERIENCE</span><h3>Learn together</h3></figcaption>
+          </figure>
+          <figure className="life-media-card life-video life-video-two">
+            <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-02-poster.jpg" aria-label="A look inside NXT Academy">
+              <source src="/media/nxt-campus-life-02.mp4" type="video/mp4" />
+            </video>
+            <figcaption><span>03 · INSIDE NXT</span><h3>A look around campus</h3></figcaption>
+          </figure>
+          <figure className="life-media-card life-photo life-photo-two">
+            <Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
+            <figcaption><span>04 · YOUR CAMPUS</span><h3>A place to begin</h3></figcaption>
+          </figure>
         </div>
+        <p className="life-swipe-hint" aria-hidden="true">Swipe to explore <ArrowRight size={16} /></p>
       </section>
 
       <section id="faq" className="section faq-redesign">
