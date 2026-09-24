@@ -89,15 +89,16 @@
 .why-graphic-item{position:relative;display:grid;grid-template-columns:74px minmax(0,1fr);align-items:center;gap:22px;min-height:190px;padding:31px 28px;border:0;border-bottom:1px solid #dce8eb;background:transparent;color:var(--ink);text-align:left;transition:background .28s ease,box-shadow .28s ease,transform .28s ease}
 .why-graphic-item:nth-child(odd){border-right:1px solid #dce8eb}
 .why-graphic-item:nth-last-child(-n+2){border-bottom:0}
-.why-graphic-item:hover{z-index:1;background:linear-gradient(135deg,#1177b8,#075184);box-shadow:inset 0 0 0 2px rgba(5,70,112,.75),0 14px 34px rgba(6,38,59,.18);transform:translateY(-3px)}
-.why-graphic-item:nth-child(even):hover{background:linear-gradient(135deg,#1177b8,#075184);box-shadow:inset 0 0 0 2px rgba(5,70,112,.75),0 14px 34px rgba(6,38,59,.18)}
+.why-graphic-item:hover,.why-graphic-item.is-active{z-index:1;background:linear-gradient(135deg,#1177b8,#075184);box-shadow:inset 0 0 0 2px rgba(5,70,112,.75),0 14px 34px rgba(6,38,59,.18);transform:translateY(-3px)}
+.why-graphic-item:nth-child(even):hover,.why-graphic-item:nth-child(even).is-active{background:linear-gradient(135deg,#1177b8,#075184);box-shadow:inset 0 0 0 2px rgba(5,70,112,.75),0 14px 34px rgba(6,38,59,.18)}
+.why-graphic-item:focus-visible{outline:3px solid rgba(17,119,184,.35);outline-offset:-3px}
 .why-graphic-icon{position:relative;width:74px;height:74px;display:grid;place-items:center;border:1.5px solid #73bf97;border-radius:22px;background:linear-gradient(145deg,#f5fffa,#e7f6ef);color:var(--green);transition:color .28s ease,background .28s ease,transform .28s ease}
 .why-graphic-icon:after{content:'';position:absolute;width:10px;height:10px;right:-5px;top:13px;border:3px solid #fff;border-radius:50%;background:var(--blue)}
 .why-graphic-item:nth-child(even) .why-graphic-icon{border-color:#82b9d9;background:linear-gradient(145deg,#f7fcff,#e9f4fa);color:var(--blue)}
 .why-graphic-item:nth-child(even) .why-graphic-icon:after{background:var(--green)}
-.why-graphic-item:hover .why-graphic-icon,.why-graphic-item:nth-child(even):hover .why-graphic-icon{border-color:#fff;background:#fff;color:var(--blue);transform:scale(1.045) rotate(-2deg)}
-.why-graphic-item:hover .why-graphic-copy .advantage-index{color:#bce7ff}
-.why-graphic-item:hover .why-graphic-copy h3,.why-graphic-item:hover .why-graphic-copy p{color:#fff}
+.why-graphic-item:hover .why-graphic-icon,.why-graphic-item.is-active .why-graphic-icon,.why-graphic-item:nth-child(even):hover .why-graphic-icon,.why-graphic-item:nth-child(even).is-active .why-graphic-icon{border-color:#fff;background:#fff;color:var(--blue);transform:scale(1.045) rotate(-2deg)}
+.why-graphic-item:hover .why-graphic-copy .advantage-index,.why-graphic-item.is-active .why-graphic-copy .advantage-index{color:#bce7ff}
+.why-graphic-item:hover .why-graphic-copy h3,.why-graphic-item:hover .why-graphic-copy p,.why-graphic-item.is-active .why-graphic-copy h3,.why-graphic-item.is-active .why-graphic-copy p{color:#fff}
 .why-graphic-copy{display:block;min-width:0}
 .why-graphic-copy .advantage-index{display:block;margin-bottom:8px;color:#29985d;font-size:11px;font-weight:850;letter-spacing:1.35px}
 .why-graphic-copy h3{margin:0 0 8px;color:var(--ink);font-size:21px;line-height:1.25}
@@ -109,11 +110,10 @@
   .why-graphic-list:before{content:'';position:absolute;left:43px;top:42px;bottom:42px;width:1px;background:linear-gradient(var(--green),#9fc8dc,var(--green));opacity:.45}
   .why-graphic-item{grid-template-columns:54px minmax(0,1fr);gap:15px;min-height:0;width:100%;padding:24px 0;border-right:0!important;border-bottom:1px solid #dce8eb!important;transform:none!important}
   .why-graphic-item:last-child{border-bottom:0!important}
-  .why-graphic-item:hover{background:transparent;box-shadow:none}
+  .why-graphic-item:hover,.why-graphic-item.is-active{padding-inline:14px;border-radius:14px;background:linear-gradient(135deg,#1177b8,#075184);box-shadow:inset 0 0 0 2px rgba(5,70,112,.75),0 12px 26px rgba(6,38,59,.17)}
   .why-graphic-icon{width:54px;height:54px;border-radius:17px;background:#fff!important}
   .why-graphic-icon svg{width:25px;height:25px}
-  .why-graphic-item:hover .why-graphic-icon{color:#fff;background:var(--green)!important}
-  .why-graphic-item:nth-child(even):hover .why-graphic-icon{background:var(--blue)!important}
+  .why-graphic-item:hover .why-graphic-icon,.why-graphic-item.is-active .why-graphic-icon,.why-graphic-item:nth-child(even):hover .why-graphic-icon,.why-graphic-item:nth-child(even).is-active .why-graphic-icon{color:var(--blue);background:#fff!important}
   .why-graphic-icon:after{width:8px;height:8px;right:-4px;top:8px}
   .why-graphic-copy h3{font-size:18px}
   .why-graphic-copy p{font-size:13.5px;line-height:1.55}

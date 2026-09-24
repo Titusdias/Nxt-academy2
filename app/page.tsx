@@ -46,6 +46,7 @@ const faqs = [
 export default function Home() {
   const [program, setProgram] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState(0);
+  const [activeAdvantage, setActiveAdvantage] = useState<number | null>(null);
   const [whatsappUrl, setWhatsappUrl] = useState('');
 
   function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
@@ -85,7 +86,12 @@ export default function Home() {
         <div className="why-heading"><span className="eyebrow">THE NXT ADVANTAGE</span><h2>Why Choose NXT Academy</h2><p>A learning experience built around the skills you need and the person you’re becoming.</p></div>
         <div className="why-graphic-list">{advantages.map(({ title, text }, index) => {
           const AdvantageIcon = advantageIcons[index];
-          return <article className="why-graphic-item" key={title}>
+          return <article className={`why-graphic-item${activeAdvantage === index ? ' is-active' : ''}`} key={title} role="button" tabIndex={0} aria-pressed={activeAdvantage === index} onClick={() => setActiveAdvantage(index)} onKeyDown={event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              setActiveAdvantage(index);
+            }
+          }}>
             <span className="why-graphic-icon" aria-hidden="true"><AdvantageIcon size={31} strokeWidth={1.7} /></span>
             <span className="why-graphic-copy"><span className="advantage-index">0{index + 1}</span><h3>{title}</h3><p>{text}</p></span>
           </article>;
