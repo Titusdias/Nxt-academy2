@@ -13,15 +13,16 @@ const links = [
 ];
 
 const heroCourses = [
-  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/course-bba-aviation.png' },
-  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-aviation-hospitality-v3.png' },
-  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-admin.png' },
+  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', image: '/course-bba-promo.webp', position: '73% center' },
+  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', image: '/course-diploma-aviation-hospitality-promo.webp', position: '74% center' },
+  { title: 'Diploma in Hospital Administration', duration: '1 year', image: '/course-hospital-administration-promo.webp', position: '76% center' },
 ];
 
 const heroSlides = [
-  { image: '/academy-campus-hero-new.jpeg', alt: 'NXT Academy of Creative Studies campus in Mangaluru', eyebrow: 'WELCOME TO NXT', title: 'A place to begin.' },
-  { image: '/academy-learning.webp', alt: 'Students taking part in an active learning session at NXT Academy', eyebrow: 'LEARN TOGETHER', title: 'Skills grow through practice.' },
-  { image: '/nxt-classroom-hero.webp', alt: 'Students building professional confidence in class', eyebrow: 'BUILD YOUR FUTURE', title: 'Confidence starts here.' },
+  { image: '/academy-campus-hero-new.jpeg', alt: 'NXT Academy of Creative Studies campus in Mangaluru', eyebrow: 'WELCOME TO NXT', title: 'A place to begin.', poster: false },
+  { image: '/course-bba-promo.webp', alt: 'BBA in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'BBA in Aviation and Hospitality Management', poster: true },
+  { image: '/course-diploma-aviation-hospitality-promo.webp', alt: 'Diploma in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'Diploma in Aviation and Hospitality Management', poster: true },
+  { image: '/course-hospital-administration-promo.webp', alt: 'Diploma in Hospital Administration at NXT Academy', eyebrow: '', title: 'Diploma in Hospital Administration', poster: true },
 ];
 
 const admissionsWhatsApp = 'https://wa.me/918217337597?text=Hello%20NXT%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20admissions.';
@@ -61,16 +62,16 @@ export default function ReferenceHero() {
 
   return <>
     <section id="home" className="campus-hero hero-slider" aria-roledescription="carousel" aria-label="NXT Academy highlights">
-      <div className="hero-slides">{heroSlides.map((slide, index) => <div className={`hero-slide${activeSlide === index ? ' is-active' : ''}`} key={slide.image} aria-hidden={activeSlide !== index}>
-        <Image className="campus-hero-image" src={slide.image} fill unoptimized preload={index === 0} sizes="100vw" alt={slide.alt} />
+      <div className="hero-slides">{heroSlides.map((slide, index) => <div className={`hero-slide${activeSlide === index ? ' is-active' : ''}${slide.poster ? ' is-poster' : ''}`} key={slide.image} aria-hidden={activeSlide !== index}>
+        <Image className="campus-hero-image" src={slide.image} fill unoptimized preload sizes="100vw" alt={slide.alt} />
       </div>)}</div>
-      <div className="campus-hero-shade" />
-      <div className="hero-slider-copy">
+      <div className={`campus-hero-shade${heroSlides[activeSlide].poster ? ' is-clear' : ''}`} />
+      {!heroSlides[activeSlide].poster && <div className="hero-slider-copy">
         <span>{heroSlides[activeSlide].eyebrow}</span>
         <h1>{heroSlides[activeSlide].title}</h1>
-      </div>
+      </div>}
       <div className="hero-slider-dots" aria-label="Choose hero image">{heroSlides.map((slide, index) => <button type="button" className={activeSlide === index ? 'is-active' : ''} aria-label={`Show image ${index + 1}: ${slide.title}`} aria-current={activeSlide === index ? 'true' : undefined} onClick={() => setActiveSlide(index)} key={slide.image} />)}</div>
-      <a className="campus-tour-link" href="#student-life">Take a look inside NXT <ArrowRight size={17} /></a>
+      {!heroSlides[activeSlide].poster && <a className="campus-tour-link" href="#student-life">Take a look inside NXT <ArrowRight size={17} /></a>}
     </section>
     <section className="hero-programs-section" aria-labelledby="programs-at-nxt-title">
       <div className="hero-program-intro">
@@ -79,7 +80,7 @@ export default function ReferenceHero() {
         <ChevronDown size={20} aria-hidden="true" />
       </div>
       <div className="hero-course-circles" aria-label="Programs at NXT Academy">{heroCourses.map(course => <a href="#courses" key={course.title}>
-        <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 78vw, 20vw" alt="" /></span>
+        <span><Image src={course.image} fill unoptimized sizes="(max-width:700px) 78vw, 20vw" alt="" style={{ objectPosition: course.position }} /></span>
         <strong>{course.title}</strong>
         <small>{course.duration}</small>
       </a>)}</div>

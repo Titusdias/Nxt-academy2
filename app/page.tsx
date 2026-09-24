@@ -21,9 +21,9 @@ const advantages = [
 const advantageIcons = [BookOpen, Users, BriefcaseBusiness, CircleCheck];
 
 const programs = [
-  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/course-bba-aviation.png' },
-  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-aviation-hospitality-v3.png' },
-  { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
+  { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/course-bba-promo.webp', position: '73% center' },
+  { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-aviation-hospitality-promo.webp', position: '74% center' },
+  { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-administration-promo.webp', position: '76% center' },
 ];
 
 const steps = [
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
         <div className="compact-course-grid">
           {programs.map(course => <button className="compact-course-card" key={course.title} onClick={() => setProgram(course.title)}>
-            <span className="compact-course-image"><Image src={course.image} fill unoptimized sizes="(max-width:700px) 30vw, 20vw" alt="" /></span>
+            <span className="compact-course-image"><Image src={course.image} fill unoptimized sizes="(max-width:700px) 30vw, 20vw" alt="" style={{ objectPosition: course.position }} /></span>
             <span className="compact-course-copy"><strong>{course.title}</strong><small>{course.duration} · {course.detail}</small></span>
             <span className="compact-course-arrow" aria-hidden="true"><ArrowRight size={20} /></span>
           </button>)}
