@@ -68,17 +68,21 @@ export default function ProgramDialog({ program, onClose }: { program: string | 
 
     scroller.scrollTop = 0;
     let scrollTimer = 0;
+    let stopTimer = 0;
     const startTimer = window.setTimeout(() => {
       scrollTimer = window.setInterval(() => {
         const isInteracting = scroller.contains(document.activeElement);
-        const reachedBottom = scroller.scrollTop >= scroller.scrollHeight - scroller.clientHeight - 1;
-        if (!isInteracting && !reachedBottom) scroller.scrollTop += 2;
-        if (reachedBottom) window.clearInterval(scrollTimer);
+        const maximumScroll = scroller.scrollHeight - scroller.clientHeight;
+        if (!isInteracting && maximumScroll > 1 && scroller.scrollTop < maximumScroll - 1) {
+          scroller.scrollTo({ top: Math.min(scroller.scrollTop + 2, maximumScroll), behavior: 'auto' });
+        }
       }, 32);
+      stopTimer = window.setTimeout(() => window.clearInterval(scrollTimer), 60000);
     }, 650);
 
     return () => {
       window.clearTimeout(startTimer);
+      window.clearTimeout(stopTimer);
       window.clearInterval(scrollTimer);
     };
   }, [program]);

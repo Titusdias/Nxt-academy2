@@ -212,7 +212,7 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .program-dialog{width:min(860px,94vw);max-height:90svh;margin:auto;padding:0;overflow:hidden;border:0;border-radius:24px;background:#f5f9fa;color:var(--ink);box-shadow:0 32px 90px rgba(3,29,45,.34)}
 .program-dialog::backdrop{background:rgba(3,29,45,.78);backdrop-filter:blur(7px)}
 .program-dialog .program-dialog-shell{position:relative;display:flex;flex-direction:column;max-height:90svh;padding:0}
-.program-dialog-scroll{min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#75c7a0 transparent;overscroll-behavior:contain}
+.program-dialog-scroll{flex:1 1 auto;min-height:0;max-height:calc(90svh - 82px);overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#75c7a0 transparent;overscroll-behavior:contain}
 .program-dialog-image{position:relative;height:250px;overflow:hidden;background:#dce8ed}
 .program-dialog-image:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(3,29,45,.42))}
 .program-dialog-image img{object-fit:cover;object-position:center 38%;transition:transform .7s ease}
@@ -258,6 +258,8 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 
 @media(max-width:700px){
   .program-dialog{width:94vw;max-height:88svh;border-radius:19px}
+  .program-dialog .program-dialog-shell{max-height:88svh}
+  .program-dialog-scroll{max-height:calc(88svh - 76px)}
   .program-dialog-image{height:190px}
   .program-dialog-content{padding:28px 20px 30px}
   .program-dialog-action{padding:11px 14px 14px}
