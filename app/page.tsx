@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
   ChevronDown, ChevronLeft, ChevronRight, CircleCheck, Mail, MapPin,
@@ -53,9 +53,26 @@ export default function Home() {
   const [program, setProgram] = useState<string | null>(null);
   const [openFaq, setOpenFaq] = useState(0);
   const [activeAdvantage, setActiveAdvantage] = useState<number | null>(null);
+  const [activeRoadmapStep, setActiveRoadmapStep] = useState<number | null>(null);
   const [campusGalleryOpen, setCampusGalleryOpen] = useState(false);
   const [campusPhoto, setCampusPhoto] = useState(0);
+  const [isPageScrolling, setIsPageScrolling] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState('');
+
+  useEffect(() => {
+    let scrollTimer: ReturnType<typeof setTimeout>;
+    const handleScroll = () => {
+      setIsPageScrolling(true);
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => setIsPageScrolling(false), 220);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimer);
+    };
+  }, []);
 
   function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -123,7 +140,12 @@ export default function Home() {
             <path className="roadmap-surface" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
             <path className="roadmap-centre" d="M35 64 C88 112 82 150 70 192 C55 245 18 270 30 320 C42 372 83 396 68 448 C54 500 26 538 40 576" />
           </svg>
-          {steps.map(([number, title], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}`} key={title}>
+          {steps.map(([number, title], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}${activeRoadmapStep === index ? ' is-active' : ''}`} key={title} role="button" tabIndex={0} aria-pressed={activeRoadmapStep === index} onClick={() => setActiveRoadmapStep(index)} onKeyDown={event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              setActiveRoadmapStep(index);
+            }
+          }}>
             <span className="roadmap-pin"><b>{number}</b></span>
             {index % 2 === 0 && <span className="roadmap-lamp" aria-hidden="true"><i /></span>}
             <div className="roadmap-copy"><h3>{title}</h3></div>
@@ -168,7 +190,10 @@ export default function Home() {
     </main>
 
     <footer className="site-footer"><div className="footer-grid"><div><Brand /><p>Practical learning and professional growth for students in Mangaluru.</p></div><div><h3>Explore NXT</h3><a href="#courses">Courses</a><a href="#why-nxt">Why NXT</a><a href="#student-life">Student Life</a></div><div><h3>Your Next Step</h3><a href="#courses">Hospitality</a><a href="#courses">Aviation</a><a href="#contact">Enquire</a><a href="#faq">FAQs</a></div><div><h3>Contact Us</h3><a href="tel:+918217337597">+91 821 733 7597</a><a href="mailto:nxtacademy69@gmail.com">nxtacademy69@gmail.com</a><a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer">WhatsApp <ArrowUpRight size={14} /></a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} NXT Academy of Creative Studies</span><span>Mangaluru, Karnataka</span></div></footer>
-    <a className="floating-whatsapp" href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={23} /></a>
+    <nav className={`mobile-contact-bar${isPageScrolling ? ' is-scrolling' : ''}`} aria-label="Quick contact">
+      <a href="tel:+918217337597" aria-label="Call NXT Academy"><Phone size={25} /><span>Call</span></a>
+      <a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={25} /><span>WhatsApp</span></a>
+    </nav>
     <ProgramDialog program={program} onClose={() => setProgram(null)} />
     {campusGalleryOpen && <div className="campus-gallery" role="dialog" aria-modal="true" aria-label="NXT Academy campus photos" onClick={() => setCampusGalleryOpen(false)}>
       <div className="campus-gallery-panel" onClick={event => event.stopPropagation()}>

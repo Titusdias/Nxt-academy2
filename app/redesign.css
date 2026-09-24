@@ -317,7 +317,10 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .roadmap-stop:nth-of-type(even) .roadmap-copy{left:0;top:58px;transform:translateX(-50%)}
 .roadmap-stop.roadmap-stop-1 .roadmap-copy{left:40px;bottom:56px;transform:none!important}
 .roadmap-stop.roadmap-stop-5 .roadmap-copy{left:-170px;top:58px;transform:none!important}
-.roadmap-stop:hover .roadmap-copy{border-color:var(--green);box-shadow:0 18px 36px rgba(6,38,59,.16)}
+.roadmap-stop{cursor:pointer}
+.roadmap-stop:focus-visible{outline:3px solid rgba(14,109,183,.48);outline-offset:8px;border-radius:18px}
+.roadmap-stop:hover .roadmap-copy,.roadmap-stop.is-active .roadmap-copy{border-color:var(--blue);background:var(--blue);box-shadow:0 18px 36px rgba(6,38,59,.22)}
+.roadmap-stop:hover .roadmap-copy h3,.roadmap-stop.is-active .roadmap-copy h3{color:#fff}
 .roadmap-stop:nth-of-type(odd):hover .roadmap-copy{transform:translate(-50%,-4px)}
 .roadmap-stop:nth-of-type(even):hover .roadmap-copy{transform:translate(-50%,4px)}
 .roadmap-stop.roadmap-stop-1:hover .roadmap-copy,.roadmap-stop.roadmap-stop-5:hover .roadmap-copy{transform:translateY(-4px)!important}
@@ -356,6 +359,9 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 }
 
 @media(prefers-reduced-motion:reduce){.roadmap-flight,.roadmap-pin,.roadmap-lamp i{animation:none}}
+
+/* Mobile quick-contact bar: visible at rest and tucked away while the page scrolls. */
+.mobile-contact-bar{display:none}
 
 .experience-redesign{border-top:1px solid #bdd5df}
 
@@ -411,6 +417,12 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .campus-gallery-image{border-radius:11px}
   .campus-gallery-thumbs{gap:7px}
   .campus-gallery-thumbs button{width:min(27vw,90px);border-width:2px}
+  .site-footer{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  .mobile-contact-bar{position:fixed;z-index:90;left:8px;right:8px;bottom:0;display:flex;height:64px;padding-bottom:env(safe-area-inset-bottom);overflow:hidden;border-radius:20px 20px 0 0;background:#5d5b5d;color:#fff;box-shadow:0 -8px 28px rgba(4,31,49,.24);transform:translateY(0);opacity:1;transition:transform .25s ease,opacity .2s ease}
+  .mobile-contact-bar.is-scrolling{transform:translateY(calc(100% + 12px));opacity:0;pointer-events:none}
+  .mobile-contact-bar a{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-right:1px solid rgba(255,255,255,.68);color:#fff;font-size:15px;line-height:1;text-decoration:none}
+  .mobile-contact-bar a:last-child{border-right:0}
+  .mobile-contact-bar svg{flex:0 0 auto}
 }
 
 @media(prefers-reduced-motion:reduce){.life-media-card,.life-media-card img{transition:none!important}}
