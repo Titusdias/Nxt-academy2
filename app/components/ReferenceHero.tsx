@@ -19,9 +19,9 @@ const heroCourses = [
 ];
 
 const heroSlides = [
-  { image: '/course-bba-promo.webp', alt: 'BBA in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'BBA in Aviation and Hospitality Management', poster: true },
-  { image: '/course-diploma-aviation-hospitality-promo.webp', alt: 'Diploma in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'Diploma in Aviation and Hospitality Management', poster: true },
-  { image: '/course-hospital-administration-promo.webp', alt: 'Diploma in Hospital Administration at NXT Academy', eyebrow: '', title: 'Diploma in Hospital Administration', poster: true },
+  { image: '/course-bba-promo.webp', alt: 'BBA in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'BBA in Aviation and Hospitality Management', poster: true, aspectRatio: '2 / 1' },
+  { image: '/course-diploma-aviation-hospitality-promo.webp', alt: 'Diploma in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'Diploma in Aviation and Hospitality Management', poster: true, aspectRatio: '1672 / 941' },
+  { image: '/course-hospital-administration-promo.webp', alt: 'Diploma in Hospital Administration at NXT Academy', eyebrow: '', title: 'Diploma in Hospital Administration', poster: true, aspectRatio: '1672 / 941' },
 ];
 
 const admissionsWhatsApp = 'https://wa.me/918217337597?text=Hello%20NXT%20Academy%2C%20I%20would%20like%20to%20enquire%20about%20admissions.';
@@ -60,7 +60,7 @@ export default function ReferenceHero() {
   }, []);
 
   return <>
-    <section id="home" className="campus-hero hero-slider" aria-roledescription="carousel" aria-label="NXT Academy highlights">
+    <section id="home" className="campus-hero hero-slider" style={{ aspectRatio: heroSlides[activeSlide].aspectRatio }} aria-roledescription="carousel" aria-label="NXT Academy highlights">
       <div className="hero-slides">{heroSlides.map((slide, index) => <div className={`hero-slide${activeSlide === index ? ' is-active' : ''}${slide.poster ? ' is-poster' : ''}`} key={slide.image} aria-hidden={activeSlide !== index}>
         <Image className="campus-hero-image" src={slide.image} fill unoptimized preload sizes="100vw" alt={slide.alt} />
       </div>)}</div>
