@@ -419,11 +419,11 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .campus-gallery-image{border-radius:11px}
   .campus-gallery-thumbs{gap:7px}
   .campus-gallery-thumbs button{width:min(27vw,90px);border-width:2px}
-  .site-footer{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
-  .mobile-contact-bar{position:fixed;z-index:90;left:0;right:0;bottom:0;display:flex;height:64px;padding-bottom:env(safe-area-inset-bottom);overflow:hidden;border-radius:0;background:var(--blue);color:#fff;box-shadow:0 -8px 28px rgba(4,31,49,.24);transform:translateY(0);opacity:1;transition:transform .25s ease,opacity .2s ease}
-  .mobile-contact-bar a{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-right:1px solid rgba(255,255,255,.68);color:#fff;font-size:15px;line-height:1;text-decoration:none}
+  .site-footer{padding-bottom:calc(68px + env(safe-area-inset-bottom))}
+  .mobile-contact-bar{position:fixed;z-index:90;left:0;right:0;bottom:0;display:flex;height:54px;padding-bottom:env(safe-area-inset-bottom);overflow:hidden;border-radius:0;background:var(--blue);color:#fff;box-shadow:0 -6px 22px rgba(4,31,49,.22);transform:translateY(0);opacity:1;transition:transform .25s ease,opacity .2s ease}
+  .mobile-contact-bar a{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-right:1px solid rgba(255,255,255,.68);color:#fff;font-size:13px;line-height:1;text-decoration:none}
   .mobile-contact-bar a:last-child{border-right:0;background:var(--green)}
-  .mobile-contact-bar svg{flex:0 0 auto}
+  .mobile-contact-bar svg{width:21px;height:21px;flex:0 0 auto}
 }
 
 @media(prefers-reduced-motion:reduce){.life-media-card,.life-media-card img{transition:none!important}}
