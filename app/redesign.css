@@ -298,6 +298,20 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .roadmap-stop:nth-of-type(even) .roadmap-pin{background:var(--blue)}
 .roadmap-stop-1 .roadmap-pin{background:#f2b927}
 .roadmap-stop:hover .roadmap-pin{background:#f2b927;transform:translate(-50%,-50%) rotate(-45deg) scale(1.08)}
+.roadmap-pin{animation:roadmap-pin-glow 5s ease-in-out infinite}
+.roadmap-stop-1 .roadmap-pin{animation-delay:0s}
+.roadmap-stop-2 .roadmap-pin{animation-delay:1s}
+.roadmap-stop-3 .roadmap-pin{animation-delay:2s}
+.roadmap-stop-4 .roadmap-pin{animation-delay:3s}
+.roadmap-stop-5 .roadmap-pin{animation-delay:4s}
+@keyframes roadmap-pin-glow{0%,18%,100%{filter:brightness(1);box-shadow:0 12px 28px rgba(6,38,59,.28)}8%{filter:brightness(1.2);box-shadow:0 0 0 10px rgba(91,202,255,.2),0 0 34px rgba(49,174,235,.9),0 12px 28px rgba(6,38,59,.28)}}
+.roadmap-lamp{position:absolute;z-index:1;left:-35px;top:-92px;width:4px;height:83px;border-radius:5px;background:linear-gradient(90deg,#335568,#88a9b8,#335568);box-shadow:0 5px 12px rgba(6,38,59,.18)}
+.roadmap-lamp:before{content:'';position:absolute;left:-2px;top:-5px;width:30px;height:4px;border-radius:5px;background:#335568;transform:rotate(-10deg);transform-origin:left center}
+.roadmap-lamp i{position:absolute;left:19px;top:-2px;width:15px;height:10px;border:2px solid #31566a;border-radius:8px 8px 4px 4px;background:#dff7ff;box-shadow:0 0 13px 5px rgba(95,211,255,.72);animation:roadmap-lamp-glow 2.4s ease-in-out infinite}
+.roadmap-lamp i:after{content:'';position:absolute;left:-17px;top:6px;width:48px;height:46px;background:linear-gradient(165deg,rgba(110,220,255,.25),transparent 70%);clip-path:polygon(38% 0,67% 0,100% 100%,0 100%)}
+.roadmap-stop-3 .roadmap-lamp{left:-30px;top:-90px;transform:scale(.9)}
+.roadmap-stop-5 .roadmap-lamp{left:-28px;top:-88px;transform:scale(.85)}
+@keyframes roadmap-lamp-glow{0%,100%{filter:brightness(.9);opacity:.78}50%{filter:brightness(1.35);opacity:1}}
 .roadmap-copy{position:absolute;width:160px;padding:14px 17px;border:1px solid #d8e6ea;border-radius:14px;background:rgba(255,255,255,.96);box-shadow:0 12px 30px rgba(6,38,59,.11);text-align:center;transition:border-color .25s,box-shadow .25s,transform .25s}
 .roadmap-stop:nth-of-type(odd) .roadmap-copy{left:0;bottom:58px;transform:translateX(-50%)}
 .roadmap-stop:nth-of-type(even) .roadmap-copy{left:0;top:58px;transform:translateX(-50%)}
@@ -329,6 +343,9 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .roadmap-stop-4 .roadmap-pin{margin-left:41px}
   .roadmap-stop-5 .roadmap-pin{margin-left:13px}
   .roadmap-pin b{font-size:11px}
+  .roadmap-pin{animation-name:roadmap-pin-glow-mobile}
+  @keyframes roadmap-pin-glow-mobile{0%,18%,100%{filter:brightness(1);box-shadow:0 9px 20px rgba(6,38,59,.24)}8%{filter:brightness(1.2);box-shadow:0 0 0 8px rgba(91,202,255,.2),0 0 27px rgba(49,174,235,.86),0 9px 20px rgba(6,38,59,.24)}}
+  .roadmap-lamp,.roadmap-stop-3 .roadmap-lamp,.roadmap-stop-5 .roadmap-lamp{left:74px;top:18px;transform:scale(.65);transform-origin:bottom center}
   .roadmap-stop:hover .roadmap-pin{transform:rotate(-45deg) scale(1.05)}
   .roadmap-copy,.roadmap-stop:nth-of-type(odd) .roadmap-copy,.roadmap-stop:nth-of-type(even) .roadmap-copy,.roadmap-stop-1 .roadmap-copy,.roadmap-stop-5 .roadmap-copy{position:relative;left:auto;top:auto;bottom:auto;width:auto;padding:16px;transform:none!important}
   .roadmap-stop:nth-of-type(even) .roadmap-copy{margin-left:0}
@@ -338,7 +355,9 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
   .roadmap-flight:after{width:34px;right:38px;bottom:8px}
 }
 
-@media(prefers-reduced-motion:reduce){.roadmap-flight{animation:none}}
+@media(prefers-reduced-motion:reduce){.roadmap-flight,.roadmap-pin,.roadmap-lamp i{animation:none}}
+
+.experience-redesign{border-top:1px solid #bdd5df}
 
 /* Responsive photo and video gallery for Life at NXT. */
 .life-redesign{background:linear-gradient(180deg,#fff 0%,#f4f9fb 100%)}

@@ -117,6 +117,7 @@ export default function Home() {
           </svg>
           {steps.map(([number, title], index) => <article className={`roadmap-stop roadmap-stop-${index + 1}`} key={title}>
             <span className="roadmap-pin"><b>{number}</b></span>
+            {index % 2 === 0 && <span className="roadmap-lamp" aria-hidden="true"><i /></span>}
             <div className="roadmap-copy"><h3>{title}</h3></div>
             {index === steps.length - 1 && <span className="roadmap-flight" aria-hidden="true"><PlaneTakeoff size={34} /></span>}
           </article>)}
