@@ -19,7 +19,6 @@ const heroCourses = [
 ];
 
 const heroSlides = [
-  { image: '/academy-campus-hero-new.jpeg', alt: 'NXT Academy of Creative Studies campus in Mangaluru', eyebrow: 'WELCOME TO NXT', title: 'A place to begin.', poster: false },
   { image: '/course-bba-promo.webp', alt: 'BBA in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'BBA in Aviation and Hospitality Management', poster: true },
   { image: '/course-diploma-aviation-hospitality-promo.webp', alt: 'Diploma in Aviation and Hospitality Management at NXT Academy', eyebrow: '', title: 'Diploma in Aviation and Hospitality Management', poster: true },
   { image: '/course-hospital-administration-promo.webp', alt: 'Diploma in Hospital Administration at NXT Academy', eyebrow: '', title: 'Diploma in Hospital Administration', poster: true },

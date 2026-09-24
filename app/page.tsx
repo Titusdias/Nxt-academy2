@@ -70,7 +70,7 @@ export default function Home() {
       <section id="courses" className="direction-section compact-courses">
         <div className="compact-courses-heading">
           <p>COURSES AT NXT</p>
-          <h2>Choose your direction</h2>
+          <h2>Choose Your Direction</h2>
         </div>
         <div className="compact-course-grid">
           {programs.map(course => <button className="compact-course-card" key={course.title} onClick={() => setProgram(course.title)}>
@@ -93,7 +93,7 @@ export default function Home() {
       </section>
 
       <section className="section experience-redesign">
-        <div className="experience-copy"><span className="eyebrow">THE LEARNING EXPERIENCE</span><h2>Less watching.<br /><em>More doing.</em></h2><p>Practical activities make it easier to understand, remember and confidently use what you learn.</p><div className="activity-list">{['Presentation practice', 'Communication sessions', 'Role play & group activities', 'Professional grooming', 'Practical demonstrations', 'Career guidance'].map(item => <span key={item}><CircleCheck size={18} />{item}</span>)}</div></div>
+        <div className="experience-copy"><span className="eyebrow">THE LEARNING EXPERIENCE</span><h2>Less watching.<br /><em>More doing.</em></h2><p>Practical activities make it easier to understand, remember and confidently use what you learn.</p><div className="activity-list">{['Presentation practice', 'Communication sessions', 'Role play & group activities', 'Professional grooming', 'Practical demonstrations', 'Career guidance', 'Social activities', 'Industrial visits'].map(item => <span key={item}><CircleCheck size={18} />{item}</span>)}</div></div>
       </section>
 
       <section id="journey" className="section journey-roadmap">
