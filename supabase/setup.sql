@@ -68,8 +68,9 @@ to authenticated
 using (bucket_id = 'media');
 
 insert into public.media_items (id, title, description, kind, source, url, thumbnail_url, sort_order, published) values
-('00000000-0000-4000-8000-000000000003', 'NXT Academy of Creative Studies', 'Free course feature by VLTV.', 'video', 'youtube', 'https://www.youtube.com/watch?v=UZWM76dTrRk', 'https://i.ytimg.com/vi/UZWM76dTrRk/hqdefault.jpg', 1, true),
-('00000000-0000-4000-8000-000000000005', 'A Place to Begin', 'NXT Academy campus in Bendur, Mangaluru.', 'image', 'local', '/academy-campus-exterior-2026.webp', '/academy-campus-exterior-2026.webp', 2, true),
-('00000000-0000-4000-8000-000000000006', 'The NXT Campus', '', 'image', 'local', '/academy-campus-hero-new.jpeg', '/academy-campus-hero-new.jpeg', 3, true),
-('00000000-0000-4000-8000-000000000007', 'Our Learning Space', '', 'image', 'local', '/academy-campus.jpeg', '/academy-campus.jpeg', 4, true)
+('00000000-0000-4000-8000-000000000003', 'NXT Academy Free Course — English', 'NXT Academy of Creative Studies free course feature by VLTV.', 'video', 'youtube', 'https://www.youtube.com/watch?v=UZWM76dTrRk', 'https://i.ytimg.com/vi/UZWM76dTrRk/hqdefault.jpg', 1, true),
+('00000000-0000-4000-8000-000000000008', 'NXT Academy Free Course — Kannada', 'NXT Academy of Creative Studies free course feature in Kannada by VLTV.', 'video', 'youtube', 'https://www.youtube.com/watch?v=p84jNb_hvQ0', 'https://i.ytimg.com/vi/p84jNb_hvQ0/hqdefault.jpg', 2, true),
+('00000000-0000-4000-8000-000000000005', 'A Place to Begin', 'NXT Academy campus in Bendur, Mangaluru.', 'image', 'local', '/academy-campus-exterior-2026.webp', '/academy-campus-exterior-2026.webp', 3, true),
+('00000000-0000-4000-8000-000000000006', 'The NXT Campus', '', 'image', 'local', '/academy-campus-hero-new.jpeg', '/academy-campus-hero-new.jpeg', 4, true),
+('00000000-0000-4000-8000-000000000007', 'Our Learning Space', '', 'image', 'local', '/academy-campus.jpeg', '/academy-campus.jpeg', 5, true)
 on conflict (id) do nothing;

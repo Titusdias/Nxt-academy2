@@ -16,13 +16,24 @@ export type MediaItem = {
 export const defaultMediaItems: MediaItem[] = [
   {
     id: 'nxt-free-course',
-    title: 'NXT Academy of Creative Studies',
-    description: 'Free course feature by VLTV.',
+    title: 'NXT Academy Free Course — English',
+    description: 'NXT Academy of Creative Studies free course feature by VLTV.',
     kind: 'video',
     source: 'youtube',
     url: 'https://www.youtube.com/watch?v=UZWM76dTrRk',
     thumbnailUrl: 'https://i.ytimg.com/vi/UZWM76dTrRk/hqdefault.jpg',
     sortOrder: 1,
+    published: true,
+  },
+  {
+    id: 'nxt-free-course-kannada',
+    title: 'NXT Academy Free Course — Kannada',
+    description: 'NXT Academy of Creative Studies free course feature in Kannada by VLTV.',
+    kind: 'video',
+    source: 'youtube',
+    url: 'https://www.youtube.com/watch?v=p84jNb_hvQ0',
+    thumbnailUrl: 'https://i.ytimg.com/vi/p84jNb_hvQ0/hqdefault.jpg',
+    sortOrder: 2,
     published: true,
   },
   {
@@ -33,7 +44,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'local',
     url: '/academy-campus-exterior-2026.webp',
     thumbnailUrl: '/academy-campus-exterior-2026.webp',
-    sortOrder: 2,
+    sortOrder: 3,
     published: true,
   },
   {
@@ -43,7 +54,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'local',
     url: '/academy-campus-hero-new.jpeg',
     thumbnailUrl: '/academy-campus-hero-new.jpeg',
-    sortOrder: 3,
+    sortOrder: 4,
     published: true,
   },
   {
@@ -53,7 +64,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'local',
     url: '/academy-campus.jpeg',
     thumbnailUrl: '/academy-campus.jpeg',
-    sortOrder: 4,
+    sortOrder: 5,
     published: true,
   },
 ];

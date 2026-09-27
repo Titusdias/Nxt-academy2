@@ -3,7 +3,7 @@
 The public media hub works immediately with the media already bundled in the website. Complete these steps once to let the client manage the shared library from `/admin`.
 
 1. Create a Supabase project at `https://supabase.com`.
-2. Open **SQL Editor**, paste the contents of `supabase/setup.sql`, and run it once. This creates the media table, public media bucket, access rules, a YouTube video, and the initial campus gallery.
+2. Open **SQL Editor**, paste the contents of `supabase/setup.sql`, and run it once. This creates the media table, public media bucket, access rules, the initial YouTube videos, and the campus gallery.
 3. Open **Authentication → Users → Add user** and create the client's admin email and password. Disable public sign-ups for this project.
 4. Copy the project URL and anon/public key from **Project Settings → API**.
 5. Add these environment variables to the Vercel project for Production, Preview, and Development:
