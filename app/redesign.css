@@ -369,6 +369,32 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 
 /* Responsive photo and video gallery for Life at NXT. */
 .life-redesign{background:linear-gradient(180deg,#fff 0%,#f4f9fb 100%)}
+.media-hub{width:min(1220px,100%);margin:0 auto}
+.media-feature{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.45fr);overflow:hidden;border:1px solid #ccdde4;border-radius:24px;background:var(--ink);box-shadow:0 24px 65px rgba(6,38,59,.18)}
+.media-player{position:relative;min-width:0;aspect-ratio:16/9;background:#020d14}
+.media-player iframe,.media-player video,.media-player img{display:block;width:100%;height:100%;border:0;object-fit:contain;background:#020d14}
+.media-feature-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(25px,4vw,52px);color:#fff}
+.media-feature-copy>span,.media-library-heading span{color:#7de0af;font-size:10px;font-weight:850;letter-spacing:1.6px}
+.media-feature-copy h3{margin:12px 0 0;color:#fff;font-size:clamp(26px,3vw,40px);letter-spacing:-1.25px;line-height:1.08}
+.media-feature-copy p{margin:16px 0 0;color:#b7ccd6;font-size:14px;line-height:1.7}
+.media-feature-copy button{display:inline-flex;align-items:center;align-self:flex-start;gap:9px;margin-top:24px;padding:12px 15px;border:1px solid rgba(125,224,175,.55);border-radius:8px;background:transparent;color:#fff;font-size:13px;font-weight:800;cursor:pointer}
+.media-feature-copy button:hover{background:var(--green);border-color:var(--green)}
+.media-library-heading{display:flex;align-items:end;justify-content:space-between;gap:22px;margin:34px 0 17px}
+.media-library-heading h3{margin:6px 0 0;color:var(--ink);font-size:25px;letter-spacing:-.6px}
+.media-rail-controls{display:flex;gap:9px}
+.media-rail-controls button{display:grid;width:42px;height:42px;place-items:center;border:1px solid #bcd3dd;border-radius:50%;background:#fff;color:var(--blue);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.media-rail-controls button:hover{border-color:var(--blue);background:var(--blue);color:#fff}
+.media-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(235px,300px);gap:16px;padding:2px 2px 16px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-behavior:smooth;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--green) #dce8ed}
+.media-tile{display:grid;grid-template-rows:150px auto;overflow:hidden;padding:0;border:1px solid #d2e1e7;border-radius:16px;background:#fff;color:var(--ink);text-align:left;scroll-snap-align:start;cursor:pointer;transition:transform .25s,border-color .25s,box-shadow .25s}
+.media-tile:hover,.media-tile.is-active{border-color:var(--blue);box-shadow:0 13px 32px rgba(6,38,59,.13);transform:translateY(-2px)}
+.media-tile.is-active{box-shadow:inset 0 0 0 2px var(--blue),0 13px 32px rgba(6,38,59,.13)}
+.media-tile-visual{position:relative;display:block;overflow:hidden;background:#082d43}
+.media-tile-visual img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.media-tile:hover .media-tile-visual img{transform:scale(1.04)}
+.media-tile-visual i{position:absolute;left:50%;top:50%;display:grid;width:44px;height:44px;place-items:center;border-radius:50%;background:var(--green);color:#fff;box-shadow:0 9px 24px rgba(4,31,49,.3);transform:translate(-50%,-50%)}
+.media-tile-copy{display:block;padding:16px 17px 18px}
+.media-tile-copy small{display:block;color:var(--green-dark);font-size:9px;font-weight:850;letter-spacing:1.2px;text-transform:uppercase}
+.media-tile-copy strong{display:block;margin-top:7px;font-size:16px;line-height:1.3}
 .life-media-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr;gap:18px;height:520px}
 .life-media-card{position:relative;isolation:isolate;overflow:hidden;margin:0;border:1px solid rgba(255,255,255,.72);border-radius:22px;background:#082d43;box-shadow:0 20px 48px rgba(6,38,59,.14);transition:transform .35s ease,box-shadow .35s ease}
 .life-media-card:hover{transform:translateY(-5px);box-shadow:0 27px 58px rgba(6,38,59,.2)}
@@ -407,6 +433,16 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 @media(max-width:760px){
   .life-redesign{padding-inline:18px}
   .life-redesign .section-heading{margin-bottom:28px}
+  .media-feature{display:block;border-radius:17px}
+  .media-player{aspect-ratio:16/9}
+  .media-feature-copy{padding:22px}
+  .media-feature-copy h3{font-size:27px}
+  .media-feature-copy p{font-size:13px}
+  .media-library-heading{margin-top:27px}
+  .media-library-heading h3{font-size:21px}
+  .media-rail-controls button{width:38px;height:38px}
+  .media-rail{grid-auto-columns:min(76vw,290px);margin-inline:-18px;padding-inline:18px}
+  .media-tile{grid-template-rows:142px auto}
   .life-media-grid{display:flex;height:auto;gap:14px;margin-inline:-18px;padding:0 18px 14px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--green) #dce8ed}
   .life-media-card,.life-video-one,.life-video-two,.life-photo-one,.life-photo-two{flex:0 0 min(82vw,340px);height:min(132vw,550px);grid-column:auto;grid-row:auto;border-radius:20px;scroll-snap-align:center;transform:none!important}
   .life-media-card figcaption{left:20px;right:20px;bottom:20px}

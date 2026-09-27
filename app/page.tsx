@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
   ChevronDown, ChevronLeft, ChevronRight, CircleCheck, Mail, MapPin,
@@ -9,7 +9,9 @@ import {
 } from 'lucide-react';
 import ReferenceHero, { AcademyHeader } from './components/ReferenceHero';
 import ProgramDialog from './components/ProgramDialog';
+import MediaHub from './components/MediaHub';
 import { Brand } from './components/AcademyUI';
+import { defaultMediaItems, fetchPublishedMedia, MediaItem } from './media';
 
 const advantages = [
   { title: 'Practical Learning', text: 'Learn through activity-based training and hands-on sessions.' },
@@ -24,12 +26,6 @@ const programs = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/course-bba-aviation.png' },
   { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-aviation-hospitality-v3.png' },
   { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
-];
-
-const campusPhotos = [
-  { src: '/academy-campus-exterior-2026.webp', alt: 'NXT Academy campus building and entrance in Mangaluru' },
-  { src: '/academy-campus-hero-new.jpeg', alt: 'Front view of NXT Academy of Creative Studies' },
-  { src: '/academy-campus.jpeg', alt: 'NXT Academy campus exterior' },
 ];
 
 const steps = [
@@ -56,7 +52,21 @@ export default function Home() {
   const [activeRoadmapStep, setActiveRoadmapStep] = useState<number | null>(null);
   const [campusGalleryOpen, setCampusGalleryOpen] = useState(false);
   const [campusPhoto, setCampusPhoto] = useState(0);
+  const [mediaItems, setMediaItems] = useState<MediaItem[]>(defaultMediaItems);
   const [whatsappUrl, setWhatsappUrl] = useState('');
+
+  useEffect(() => {
+    let active = true;
+    fetchPublishedMedia().then(items => { if (active) setMediaItems(items); });
+    return () => { active = false; };
+  }, []);
+
+  const campusPhotos = mediaItems.filter(item => item.kind === 'image');
+  const openCampusGallery = (mediaId: string) => {
+    const index = Math.max(0, campusPhotos.findIndex(item => item.id === mediaId));
+    setCampusPhoto(index);
+    setCampusGalleryOpen(true);
+  };
 
   function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -140,26 +150,7 @@ export default function Home() {
 
       <section id="student-life" className="section life-redesign">
         <div className="section-heading"><div><span className="eyebrow">BEYOND THE TEXTBOOK</span><h2>Life at <em>NXT.</em></h2></div><p>New skills, shared experiences and a little more confidence every day.</p></div>
-        <div className="life-media-grid">
-          <figure className="life-media-card life-video life-video-one">
-            <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-01-poster.jpg" aria-label="A special celebration at NXT Academy">
-              <source src="/media/nxt-campus-life-01.mp4" type="video/mp4" />
-            </video>
-            <figcaption><span>01 · CAMPUS MOMENTS</span><h3>Celebrating Together</h3></figcaption>
-          </figure>
-          <figure className="life-media-card life-video life-video-two">
-            <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-02-poster.jpg" aria-label="A look inside NXT Academy">
-              <source src="/media/nxt-campus-life-02.mp4" type="video/mp4" />
-            </video>
-            <figcaption><span>02 · INSIDE NXT</span><h3>A Look Around Campus</h3></figcaption>
-          </figure>
-          <figure className="life-media-card life-photo life-photo-two">
-            <Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
-            <figcaption><span>03 · YOUR CAMPUS</span><h3>A Place to Begin</h3></figcaption>
-            <button className="life-gallery-open" type="button" aria-label="Open NXT Academy campus photo gallery" onClick={() => { setCampusPhoto(0); setCampusGalleryOpen(true); }} />
-          </figure>
-        </div>
-        <p className="life-swipe-hint" aria-hidden="true">Swipe to explore <ArrowRight size={16} /></p>
+        <MediaHub items={mediaItems} onOpenGallery={openCampusGallery} />
       </section>
 
       <section id="faq" className="section faq-redesign">
@@ -182,13 +173,13 @@ export default function Home() {
     {campusGalleryOpen && <div className="campus-gallery" role="dialog" aria-modal="true" aria-label="NXT Academy campus photos" onClick={() => setCampusGalleryOpen(false)}>
       <div className="campus-gallery-panel" onClick={event => event.stopPropagation()}>
         <button className="campus-gallery-close" type="button" aria-label="Close campus photo gallery" onClick={() => setCampusGalleryOpen(false)}><X /></button>
-        <div className="campus-gallery-image"><Image src={campusPhotos[campusPhoto].src} fill unoptimized sizes="94vw" alt={campusPhotos[campusPhoto].alt} /></div>
+        <div className="campus-gallery-image"><Image src={campusPhotos[campusPhoto].url} fill unoptimized sizes="94vw" alt={campusPhotos[campusPhoto].title} /></div>
         <div className="campus-gallery-controls">
           <button type="button" aria-label="Previous campus photo" onClick={() => setCampusPhoto(current => (current - 1 + campusPhotos.length) % campusPhotos.length)}><ChevronLeft /></button>
           <span>{campusPhoto + 1} / {campusPhotos.length}</span>
           <button type="button" aria-label="Next campus photo" onClick={() => setCampusPhoto(current => (current + 1) % campusPhotos.length)}><ChevronRight /></button>
         </div>
-        <div className="campus-gallery-thumbs">{campusPhotos.map((photo, index) => <button type="button" className={campusPhoto === index ? 'is-active' : ''} aria-label={`Show campus photo ${index + 1}`} onClick={() => setCampusPhoto(index)} key={photo.src}><Image src={photo.src} fill unoptimized sizes="100px" alt="" /></button>)}</div>
+        <div className="campus-gallery-thumbs">{campusPhotos.map((photo, index) => <button type="button" className={campusPhoto === index ? 'is-active' : ''} aria-label={`Show campus photo ${index + 1}`} onClick={() => setCampusPhoto(index)} key={photo.id}><Image src={photo.thumbnailUrl || photo.url} fill unoptimized sizes="100px" alt="" /></button>)}</div>
       </div>
     </div>}
   </>;
