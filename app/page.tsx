@@ -4,8 +4,8 @@ import Image from 'next/image';
 import { FormEvent, useEffect, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
-  ChevronDown, ChevronLeft, ChevronRight, CircleCheck, Mail, MapPin,
-  MessageCircle, Phone, PlaneTakeoff, Users, X,
+  ChevronDown, CircleCheck, Mail, MapPin,
+  MessageCircle, Phone, PlaneTakeoff, Users,
 } from 'lucide-react';
 import ReferenceHero, { AcademyHeader } from './components/ReferenceHero';
 import ProgramDialog from './components/ProgramDialog';
@@ -50,8 +50,6 @@ export default function Home() {
   const [openFaq, setOpenFaq] = useState(0);
   const [activeAdvantage, setActiveAdvantage] = useState<number | null>(null);
   const [activeRoadmapStep, setActiveRoadmapStep] = useState<number | null>(null);
-  const [campusGalleryOpen, setCampusGalleryOpen] = useState(false);
-  const [campusPhoto, setCampusPhoto] = useState(0);
   const [mediaItems, setMediaItems] = useState<MediaItem[]>(defaultMediaItems);
   const [whatsappUrl, setWhatsappUrl] = useState('');
 
@@ -61,12 +59,9 @@ export default function Home() {
     return () => { active = false; };
   }, []);
 
+  const youtubeVideos = mediaItems.filter(item => item.kind === 'video' && item.source === 'youtube');
   const campusPhotos = mediaItems.filter(item => item.kind === 'image');
-  const openCampusGallery = (mediaId: string) => {
-    const index = Math.max(0, campusPhotos.findIndex(item => item.id === mediaId));
-    setCampusPhoto(index);
-    setCampusGalleryOpen(true);
-  };
+  const campusCover = campusPhotos[0];
 
   function prepareEnquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -163,10 +158,10 @@ export default function Home() {
             </video>
             <figcaption><span>02 · INSIDE NXT</span><h3>A Look Around Campus</h3></figcaption>
           </figure>
-          <figure className="life-media-card life-photo life-photo-two">
-            <Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
-            <figcaption><span>03 · YOUR CAMPUS</span><h3>A Place to Begin</h3></figcaption>
-            <button className="life-gallery-open" type="button" aria-label="Open NXT Academy campus photo gallery" onClick={() => openCampusGallery('campus-building')} />
+          <figure className={`life-media-card life-photo life-photo-two${campusCover ? '' : ' is-empty'}`}>
+            <Image src={campusCover?.thumbnailUrl || campusCover?.url || '/academy-campus.jpeg'} fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
+            <figcaption><span>03 · YOUR CAMPUS</span><h3>A Place to Begin</h3><small>{campusCover ? `View ${campusPhotos.length} campus photo${campusPhotos.length === 1 ? '' : 's'}` : 'Gallery coming soon'}</small></figcaption>
+            <a className="life-gallery-open" href="/campus-gallery" aria-label="Open NXT Academy campus photo gallery" />
           </figure>
         </div>
         <p className="life-swipe-hint" aria-hidden="true">Swipe to explore <ArrowRight size={16} /></p>
@@ -174,7 +169,7 @@ export default function Home() {
 
       <section id="media" className="section media-redesign">
         <div className="section-heading"><div><span className="eyebrow">NXT MEDIA</span><h2>Watch What’s <em>Happening.</em></h2></div><p>Videos, campus highlights and moments from the NXT community.</p></div>
-        <MediaHub items={mediaItems} onOpenGallery={openCampusGallery} />
+        <MediaHub items={youtubeVideos} />
       </section>
 
       <section id="faq" className="section faq-redesign">
@@ -194,17 +189,5 @@ export default function Home() {
       <a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={25} /><span>WhatsApp</span></a>
     </nav>
     <ProgramDialog program={program} onClose={() => setProgram(null)} />
-    {campusGalleryOpen && <div className="campus-gallery" role="dialog" aria-modal="true" aria-label="NXT Academy campus photos" onClick={() => setCampusGalleryOpen(false)}>
-      <div className="campus-gallery-panel" onClick={event => event.stopPropagation()}>
-        <button className="campus-gallery-close" type="button" aria-label="Close campus photo gallery" onClick={() => setCampusGalleryOpen(false)}><X /></button>
-        <div className="campus-gallery-image"><Image src={campusPhotos[campusPhoto].url} fill unoptimized sizes="94vw" alt={campusPhotos[campusPhoto].title} /></div>
-        <div className="campus-gallery-controls">
-          <button type="button" aria-label="Previous campus photo" onClick={() => setCampusPhoto(current => (current - 1 + campusPhotos.length) % campusPhotos.length)}><ChevronLeft /></button>
-          <span>{campusPhoto + 1} / {campusPhotos.length}</span>
-          <button type="button" aria-label="Next campus photo" onClick={() => setCampusPhoto(current => (current + 1) % campusPhotos.length)}><ChevronRight /></button>
-        </div>
-        <div className="campus-gallery-thumbs">{campusPhotos.map((photo, index) => <button type="button" className={campusPhoto === index ? 'is-active' : ''} aria-label={`Show campus photo ${index + 1}`} onClick={() => setCampusPhoto(index)} key={photo.id}><Image src={photo.thumbnailUrl || photo.url} fill unoptimized sizes="100px" alt="" /></button>)}</div>
-      </div>
-    </div>}
   </>;
 }

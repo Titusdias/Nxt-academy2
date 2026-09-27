@@ -15,28 +15,6 @@ export type MediaItem = {
 
 export const defaultMediaItems: MediaItem[] = [
   {
-    id: 'campus-celebration',
-    title: 'Celebrating Together',
-    description: 'Campus moments at NXT Academy.',
-    kind: 'video',
-    source: 'local',
-    url: '/media/nxt-campus-life-01.mp4',
-    thumbnailUrl: '/media/nxt-campus-life-01-poster.jpg',
-    sortOrder: 1,
-    published: true,
-  },
-  {
-    id: 'inside-nxt',
-    title: 'A Look Around Campus',
-    description: 'A closer look at life and learning inside NXT.',
-    kind: 'video',
-    source: 'local',
-    url: '/media/nxt-campus-life-02.mp4',
-    thumbnailUrl: '/media/nxt-campus-life-02-poster.jpg',
-    sortOrder: 2,
-    published: true,
-  },
-  {
     id: 'nxt-free-course',
     title: 'NXT Academy of Creative Studies',
     description: 'Free course feature by VLTV.',
@@ -44,18 +22,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'youtube',
     url: 'https://www.youtube.com/watch?v=UZWM76dTrRk',
     thumbnailUrl: 'https://i.ytimg.com/vi/UZWM76dTrRk/hqdefault.jpg',
-    sortOrder: 3,
-    published: true,
-  },
-  {
-    id: 'nxt-inauguration',
-    title: 'NXT Academy Inauguration Ceremony',
-    description: 'Inauguration ceremony coverage by VLTV.',
-    kind: 'video',
-    source: 'facebook',
-    url: 'https://www.facebook.com/viewlive.tv/posts/nxt-academy-of-creative-studies-inauguration-ceremony-free-course-vltv-%E0%B2%A8%E0%B3%86%E0%B2%95%E0%B3%8D%E0%B2%B7%E0%B3%8D%E0%B2%9F%E0%B3%8D-/1670353431767873/',
-    thumbnailUrl: '/academy-campus.jpeg',
-    sortOrder: 4,
+    sortOrder: 1,
     published: true,
   },
   {
@@ -66,7 +33,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'local',
     url: '/academy-campus-exterior-2026.webp',
     thumbnailUrl: '/academy-campus-exterior-2026.webp',
-    sortOrder: 5,
+    sortOrder: 2,
     published: true,
   },
   {
@@ -76,7 +43,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'local',
     url: '/academy-campus-hero-new.jpeg',
     thumbnailUrl: '/academy-campus-hero-new.jpeg',
-    sortOrder: 6,
+    sortOrder: 3,
     published: true,
   },
   {
@@ -86,7 +53,7 @@ export const defaultMediaItems: MediaItem[] = [
     source: 'local',
     url: '/academy-campus.jpeg',
     thumbnailUrl: '/academy-campus.jpeg',
-    sortOrder: 7,
+    sortOrder: 4,
     published: true,
   },
 ];
