@@ -28,6 +28,12 @@ const programs = [
   { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
 ];
 
+const campusPhotos = [
+  { id: 'campus-exterior-2026', title: 'A Place to Begin', url: '/academy-campus-exterior-2026.webp', thumbnailUrl: '/academy-campus-exterior-2026.webp' },
+  { id: 'campus-front', title: 'The NXT Campus', url: '/academy-campus-hero-new.jpeg', thumbnailUrl: '/academy-campus-hero-new.jpeg' },
+  { id: 'campus-building', title: 'Our Learning Space', url: '/academy-campus.jpeg', thumbnailUrl: '/academy-campus.jpeg' },
+];
+
 const steps = [
   ['01', 'Discover'],
   ['02', 'Learn'],
@@ -61,7 +67,6 @@ export default function Home() {
     return () => { active = false; };
   }, []);
 
-  const campusPhotos = mediaItems.filter(item => item.kind === 'image');
   const openCampusGallery = (mediaId: string) => {
     const index = Math.max(0, campusPhotos.findIndex(item => item.id === mediaId));
     setCampusPhoto(index);
@@ -174,7 +179,7 @@ export default function Home() {
 
       <section id="media" className="section media-redesign">
         <div className="section-heading"><div><span className="eyebrow">NXT MEDIA</span><h2>Watch What’s <em>Happening.</em></h2></div><p>Videos, campus highlights and moments from the NXT community.</p></div>
-        <MediaHub items={mediaItems} onOpenGallery={openCampusGallery} />
+        <MediaHub items={mediaItems} />
       </section>
 
       <section id="faq" className="section faq-redesign">

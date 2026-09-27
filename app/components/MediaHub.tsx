@@ -1,15 +1,14 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Images, Play } from 'lucide-react';
-import { getFacebookEmbed, getYouTubeEmbed, MediaItem } from '../media';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { getYouTubeEmbed, MediaItem } from '../media';
 
 type MediaHubProps = {
   items: MediaItem[];
-  onOpenGallery: (mediaId: string) => void;
 };
 
-export default function MediaHub({ items, onOpenGallery }: MediaHubProps) {
+export default function MediaHub({ items }: MediaHubProps) {
   const [selectedId, setSelectedId] = useState(items[0]?.id || '');
   const railRef = useRef<HTMLDivElement>(null);
   const selected = items.find(item => item.id === selectedId) || items[0];
@@ -27,16 +26,12 @@ export default function MediaHub({ items, onOpenGallery }: MediaHubProps) {
   return <div className="media-hub">
     <div className="media-feature">
       <div className="media-player">
-        {selected.kind === 'image' && <img src={selected.url} alt={selected.title} />}
-        {selected.kind === 'video' && selected.source === 'youtube' && <iframe src={getYouTubeEmbed(selected.url)} title={selected.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />}
-        {selected.kind === 'video' && selected.source === 'facebook' && <iframe src={getFacebookEmbed(selected.url)} title={selected.title} allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen />}
-        {selected.kind === 'video' && !['youtube', 'facebook'].includes(selected.source) && <video key={selected.url} controls playsInline preload="metadata" poster={selected.thumbnailUrl} aria-label={selected.title}><source src={selected.url} /></video>}
+        <iframe src={getYouTubeEmbed(selected.url)} title={selected.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
       </div>
       <div className="media-feature-copy">
-        <span>{selected.kind === 'video' ? 'NOW SHOWING' : 'PHOTO HIGHLIGHT'}</span>
+        <span>NOW SHOWING</span>
         <h3>{selected.title}</h3>
         {selected.description && <p>{selected.description}</p>}
-        {selected.kind === 'image' && <button type="button" onClick={() => onOpenGallery(selected.id)}><Images size={18} /> View Photo Gallery</button>}
       </div>
     </div>
 
@@ -51,9 +46,9 @@ export default function MediaHub({ items, onOpenGallery }: MediaHubProps) {
       {items.map((item, index) => <button type="button" className={`media-tile${item.id === selected.id ? ' is-active' : ''}`} aria-pressed={item.id === selected.id} onClick={() => setSelectedId(item.id)} key={item.id}>
         <span className="media-tile-visual">
           <img src={item.thumbnailUrl || item.url} alt="" />
-          {item.kind === 'video' && <i><Play size={18} fill="currentColor" /></i>}
+          <i><Play size={18} fill="currentColor" /></i>
         </span>
-        <span className="media-tile-copy"><small>{String(index + 1).padStart(2, '0')} · {item.kind}</small><strong>{item.title}</strong></span>
+        <span className="media-tile-copy"><small>{String(index + 1).padStart(2, '0')} · YOUTUBE</small><strong>{item.title}</strong></span>
       </button>)}
     </div>
   </div>;
