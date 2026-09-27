@@ -150,6 +150,30 @@ export default function Home() {
 
       <section id="student-life" className="section life-redesign">
         <div className="section-heading"><div><span className="eyebrow">BEYOND THE TEXTBOOK</span><h2>Life at <em>NXT.</em></h2></div><p>New skills, shared experiences and a little more confidence every day.</p></div>
+        <div className="life-media-grid">
+          <figure className="life-media-card life-video life-video-one">
+            <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-01-poster.jpg" aria-label="A special celebration at NXT Academy">
+              <source src="/media/nxt-campus-life-01.mp4" type="video/mp4" />
+            </video>
+            <figcaption><span>01 · CAMPUS MOMENTS</span><h3>Celebrating Together</h3></figcaption>
+          </figure>
+          <figure className="life-media-card life-video life-video-two">
+            <video controls playsInline preload="metadata" poster="/media/nxt-campus-life-02-poster.jpg" aria-label="A look inside NXT Academy">
+              <source src="/media/nxt-campus-life-02.mp4" type="video/mp4" />
+            </video>
+            <figcaption><span>02 · INSIDE NXT</span><h3>A Look Around Campus</h3></figcaption>
+          </figure>
+          <figure className="life-media-card life-photo life-photo-two">
+            <Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
+            <figcaption><span>03 · YOUR CAMPUS</span><h3>A Place to Begin</h3></figcaption>
+            <button className="life-gallery-open" type="button" aria-label="Open NXT Academy campus photo gallery" onClick={() => openCampusGallery('campus-building')} />
+          </figure>
+        </div>
+        <p className="life-swipe-hint" aria-hidden="true">Swipe to explore <ArrowRight size={16} /></p>
+      </section>
+
+      <section id="media" className="section media-redesign">
+        <div className="section-heading"><div><span className="eyebrow">NXT MEDIA</span><h2>Watch What’s <em>Happening.</em></h2></div><p>Videos, campus highlights and moments from the NXT community.</p></div>
         <MediaHub items={mediaItems} onOpenGallery={openCampusGallery} />
       </section>
 

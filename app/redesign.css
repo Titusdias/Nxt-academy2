@@ -369,6 +369,7 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 
 /* Responsive photo and video gallery for Life at NXT. */
 .life-redesign{background:linear-gradient(180deg,#fff 0%,#f4f9fb 100%)}
+.media-redesign{background:#f4f9fb}
 .media-hub{width:min(1220px,100%);margin:0 auto}
 .media-feature{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.45fr);overflow:hidden;border:1px solid #ccdde4;border-radius:24px;background:var(--ink);box-shadow:0 24px 65px rgba(6,38,59,.18)}
 .media-player{position:relative;min-width:0;aspect-ratio:16/9;background:#020d14}
@@ -431,8 +432,8 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 }
 
 @media(max-width:760px){
-  .life-redesign{padding-inline:18px}
-  .life-redesign .section-heading{margin-bottom:28px}
+  .life-redesign,.media-redesign{padding-inline:18px}
+  .life-redesign .section-heading,.media-redesign .section-heading{margin-bottom:28px}
   .media-feature{display:block;border-radius:17px}
   .media-player{aspect-ratio:16/9}
   .media-feature-copy{padding:22px}
