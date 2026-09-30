@@ -15,5 +15,5 @@ The public media hub works immediately with the media already bundled in the web
 
 6. Redeploy the website, then visit `https://nxt-academy2.vercel.app/admin` and sign in with the client account.
 
-The admin can add YouTube video links, reorder them, hide or publish them, and delete them. YouTube thumbnails are added automatically; editing access is limited to authenticated users.
+The admin can add YouTube video links and upload campus gallery photos, reorder them, hide or publish them, and delete them. YouTube thumbnails are added automatically. Uploaded gallery photos are stored in the public `media` bucket; editing access is limited to authenticated users.
 

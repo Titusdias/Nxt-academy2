@@ -88,6 +88,21 @@ export async function fetchPublishedMedia(): Promise<MediaItem[]> {
   }
 }
 
+export async function fetchPublishedGallery(): Promise<MediaItem[]> {
+  if (!mediaBackendConfigured) return [];
+  try {
+    const response = await fetch(`${supabaseUrl}/rest/v1/media_items?select=*&published=eq.true&kind=eq.image&order=sort_order.asc`, {
+      headers: { apikey: supabaseAnonKey, Authorization: `Bearer ${supabaseAnonKey}` },
+      cache: 'no-store',
+    });
+    if (!response.ok) throw new Error('Unable to load campus gallery');
+    const rows = await response.json();
+    return rows.map(mapMediaRow).filter(item => item.kind === 'image');
+  } catch {
+    return [];
+  }
+}
+
 export function mapMediaRow(row: Record<string, unknown>): MediaItem {
   return {
     id: String(row.id),

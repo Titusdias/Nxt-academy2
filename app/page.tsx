@@ -5,13 +5,13 @@ import { FormEvent, useEffect, useState } from 'react';
 import {
   ArrowRight, ArrowUpRight, BookOpen, BriefcaseBusiness,
   ChevronDown, ChevronLeft, ChevronRight, CircleCheck, Mail, MapPin,
-  MessageCircle, Phone, PlaneTakeoff, Users, X,
+  Images, MessageCircle, Phone, PlaneTakeoff, Users, X,
 } from 'lucide-react';
 import ReferenceHero, { AcademyHeader } from './components/ReferenceHero';
 import ProgramDialog from './components/ProgramDialog';
 import MediaHub from './components/MediaHub';
 import { Brand } from './components/AcademyUI';
-import { defaultMediaItems, fetchPublishedMedia, MediaItem } from './media';
+import { defaultMediaItems, fetchPublishedGallery, fetchPublishedMedia, MediaItem } from './media';
 
 const advantages = [
   { title: 'Practical Learning', text: 'Learn through activity-based training and hands-on sessions.' },
@@ -26,12 +26,6 @@ const programs = [
   { title: 'BBA in Aviation and Hospitality Management', duration: '3 years', detail: 'Aviation · Hospitality · Management', image: '/course-bba-aviation.png' },
   { title: 'Diploma in Aviation and Hospitality Management', duration: '1 year', detail: 'Guest service · Aviation · Communication', image: '/course-diploma-aviation-hospitality-v3.png' },
   { title: 'Diploma in Hospital Administration', duration: '1 year', detail: 'Healthcare service · Administration', image: '/course-hospital-admin.png' },
-];
-
-const campusPhotos = [
-  { id: 'campus-exterior-2026', title: 'A Place to Begin', url: '/academy-campus-exterior-2026.webp', thumbnailUrl: '/academy-campus-exterior-2026.webp' },
-  { id: 'campus-front', title: 'The NXT Campus', url: '/academy-campus-hero-new.jpeg', thumbnailUrl: '/academy-campus-hero-new.jpeg' },
-  { id: 'campus-building', title: 'Our Learning Space', url: '/academy-campus.jpeg', thumbnailUrl: '/academy-campus.jpeg' },
 ];
 
 const steps = [
@@ -59,15 +53,22 @@ export default function Home() {
   const [campusGalleryOpen, setCampusGalleryOpen] = useState(false);
   const [campusPhoto, setCampusPhoto] = useState(0);
   const [mediaItems, setMediaItems] = useState<MediaItem[]>(defaultMediaItems);
+  const [campusPhotos, setCampusPhotos] = useState<MediaItem[]>([]);
   const [whatsappUrl, setWhatsappUrl] = useState('');
 
   useEffect(() => {
     let active = true;
-    fetchPublishedMedia().then(items => { if (active) setMediaItems(items); });
+    Promise.all([fetchPublishedMedia(), fetchPublishedGallery()]).then(([videos, photos]) => {
+      if (active) {
+        setMediaItems(videos);
+        setCampusPhotos(photos);
+      }
+    });
     return () => { active = false; };
   }, []);
 
   const openCampusGallery = (mediaId: string) => {
+    if (!campusPhotos.length) return;
     const index = Math.max(0, campusPhotos.findIndex(item => item.id === mediaId));
     setCampusPhoto(index);
     setCampusGalleryOpen(true);
@@ -168,11 +169,13 @@ export default function Home() {
             </video>
             <figcaption><span>02 · INSIDE NXT</span><h3>A Look Around Campus</h3></figcaption>
           </figure>
-          <figure className="life-media-card life-photo life-photo-two">
-            <Image src="/academy-campus.jpeg" fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt="NXT Academy campus in Mangaluru" />
-            <figcaption><span>03 · YOUR CAMPUS</span><h3>A Place to Begin</h3></figcaption>
-            <button className="life-gallery-open" type="button" aria-label="Open NXT Academy campus photo gallery" onClick={() => openCampusGallery('campus-building')} />
-          </figure>
+          {campusPhotos.length ? <figure className="life-media-card life-photo life-photo-two">
+            <Image src={campusPhotos[0].url} fill unoptimized sizes="(max-width:760px) 82vw, 34vw" alt={campusPhotos[0].title} />
+            <figcaption><span>03 · YOUR CAMPUS</span><h3>{campusPhotos[0].title}</h3></figcaption>
+            <button className="life-gallery-open" type="button" aria-label="Open NXT Academy campus photo gallery" onClick={() => openCampusGallery(campusPhotos[0].id)} />
+          </figure> : <figure className="life-media-card life-photo life-photo-two life-photo-empty">
+            <div className="life-gallery-placeholder"><Images size={42} /><span>03 · YOUR CAMPUS</span><h3>Gallery Coming Soon</h3><p>Campus photos will appear here.</p></div>
+          </figure>}
         </div>
         <p className="life-swipe-hint" aria-hidden="true">Swipe to explore <ArrowRight size={16} /></p>
       </section>
@@ -199,7 +202,7 @@ export default function Home() {
       <a href="https://wa.me/918217337597" target="_blank" rel="noopener noreferrer" aria-label="Chat with NXT Academy on WhatsApp"><MessageCircle size={25} /><span>WhatsApp</span></a>
     </nav>
     <ProgramDialog program={program} onClose={() => setProgram(null)} />
-    {campusGalleryOpen && <div className="campus-gallery" role="dialog" aria-modal="true" aria-label="NXT Academy campus photos" onClick={() => setCampusGalleryOpen(false)}>
+    {campusGalleryOpen && campusPhotos.length > 0 && <div className="campus-gallery" role="dialog" aria-modal="true" aria-label="NXT Academy campus photos" onClick={() => setCampusGalleryOpen(false)}>
       <div className="campus-gallery-panel" onClick={event => event.stopPropagation()}>
         <button className="campus-gallery-close" type="button" aria-label="Close campus photo gallery" onClick={() => setCampusGalleryOpen(false)}><X /></button>
         <div className="campus-gallery-image"><Image src={campusPhotos[campusPhoto].url} fill unoptimized sizes="94vw" alt={campusPhotos[campusPhoto].title} /></div>

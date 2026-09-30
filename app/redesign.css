@@ -411,6 +411,13 @@ body{font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:#fbfdfe}
 .life-media-card figcaption h3{margin:8px 0 0;font-size:clamp(20px,2vw,29px);font-weight:650;letter-spacing:-.7px}
 .life-gallery-open{position:absolute;z-index:3;inset:0;width:100%;border:0;background:transparent;cursor:pointer}
 .life-gallery-open:focus-visible{outline:4px solid #fff;outline-offset:-7px;border-radius:22px}
+.life-photo-empty{display:grid;place-items:center;background:linear-gradient(145deg,#07334c,#0a63ad)}
+.life-photo-empty:after{background:radial-gradient(circle at 50% 35%,rgba(18,174,114,.28),transparent 48%)}
+.life-gallery-placeholder{position:relative;z-index:2;display:flex;max-width:260px;flex-direction:column;align-items:center;padding:28px;color:#fff;text-align:center}
+.life-gallery-placeholder svg{margin-bottom:18px;color:#7de0af}
+.life-gallery-placeholder span{font-size:10px;font-weight:800;letter-spacing:1.35px}
+.life-gallery-placeholder h3{margin:10px 0 7px;font-size:clamp(22px,2vw,29px)}
+.life-gallery-placeholder p{margin:0;color:#c7dce6;font-size:13px}
 .life-swipe-hint{display:none!important}
 
 .campus-gallery{position:fixed;z-index:120;inset:0;display:grid;place-items:center;padding:22px;background:rgba(2,28,44,.86);backdrop-filter:blur(9px)}
